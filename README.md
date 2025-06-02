@@ -2,7 +2,7 @@
 
 The Transit Operational Data Standard (TODS) is an open standard for describing how to operate scheduled transit operations which can be used to port scheduled operations between software products (e.g. scheduling systems and CAD/AVL systems), agencies, and more. TODS leverages the existing [General Transit Feed Specification](https://gtfs.org) (GTFS) and extends it to include information about personnel and non-revenue service.
 
-Complete documentation published at: <https://ods.calitp.org>
+Complete documentation published at: <https://tods.mobilitydata.org>
 
 ## License to Use
 
@@ -12,7 +12,7 @@ The TODS Specification is licensed under the [Apache License 2.0](https://www.ap
 
 If you use the Transit Operational Data Standard in a report or article, please cite it as follows:
 
-> Transit Operational Data Standard Working Group. 2022. Transit Operational Data Standard. Transit Operational Data Standard Board of Directors. https://ods.calitp.org.
+> Transit Operational Data Standard Working Group. 2022. Transit Operational Data Standard. Transit Operational Data Standard Board of Directors. https://tods.mobilitydata.org.
 
 Additional citation styles can be found in [CITATION](CITATION).
 
