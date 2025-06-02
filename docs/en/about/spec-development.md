@@ -41,7 +41,7 @@ The following organizations were consulted as a part of the feasibility analysis
 
 ## Initial Development
 
-In 2021, Cal-ITP convened the [TODS Working Group](./working-group.md), composed of stakeholders throughout the mobility industry, for the purpose of developing and adopting a first version of a Transit Operational Data Standard (TODS). These stakeholders included transit schedule firms, CAD/AVL firms, public transit providers, private transit providers, local governments and metropolitan planning organizations (MPOs), labor unions, and manufacturers of integrated on-vehicle hardware solutions (such as Automated Passenger Counting devices or LED signage).
+In 2021, Cal-ITP convened the [TODS Working Group](../resources/faq.md#what-is-the-tods-working-group), composed of stakeholders throughout the mobility industry, for the purpose of developing and adopting a first version of a Transit Operational Data Standard (TODS). These stakeholders included transit schedule firms, CAD/AVL firms, public transit providers, private transit providers, local governments and metropolitan planning organizations (MPOs), labor unions, and manufacturers of integrated on-vehicle hardware solutions (such as Automated Passenger Counting devices or LED signage).
 
 Meetings began in Summer of 2021 and continued through the end of 2021, at which point a framework for v1.0.0 had been reached. After spending several months resolving minor issues with the framework, the TODS Working Group approved v1.0.0 on May 3rd, 2022.
 For a full list of past meetings and videos, go to the [Contributor Meetings page](../governance/contributor-meetings.md).

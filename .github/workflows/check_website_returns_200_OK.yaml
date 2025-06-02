@@ -1,0 +1,25 @@
+name: Check Website returns 200 OK
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Update website on server
+    types:
+      - completed
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for 5 minutes
+        run: sleep 300
+
+      - name: Check HTTP Status Code
+        run: |
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://tods.mobilitydata.org/ )
+          if [ "$STATUS_CODE" -ne 200 ]; then
+            echo "Error: Website returned status code $STATUS_CODE"
+            exit 1
+          fi
+          echo "Website is up and returned 200"

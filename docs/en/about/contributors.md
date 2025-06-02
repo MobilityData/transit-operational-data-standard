@@ -1,6 +1,6 @@
 # Contributors
 
-The Transit Operational Data Standard Contributors Group (formerly known as the TODS Working Group) is convened by [TODS Board]((../governance/governance.md#TODS-board-of-directors)) as part of its goal to provide complete, accurate, and up-to-date transit data to customers and respective agencies.
+The Transit Operational Data Standard Contributors Group (formerly known as the TODS Working Group) is convened by [TODS Board](../governance/governance.md#tods-board-of-directors) as part of its goal to provide complete, accurate, and up-to-date transit data to customers and respective agencies.
 
 Contributors are expected to commit to supporting the adopted TODS v1 specification. Depending on the organization,supporting the TODS v1 specification may entail developing software to produce or consume the specification, or, for transit agencies, encouraging vendors to support the specification.
 

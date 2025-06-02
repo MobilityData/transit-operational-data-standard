@@ -1,0 +1,123 @@
+site_name: "Transit Operational Data Standard"
+site_url: https://tods.mobilitydata.org
+repo_url: https://github.com/MobilityData/tods.mobilitydata.org
+repo_name: TODS Specification
+docs_dir: ../../docs/en       # Where to find the English markdown files
+site_dir: ../../generated/    # Where to put the English HTML files
+# edit_uri: edit/main/docs
+
+theme:
+  name: material
+  language: en
+  custom_dir: ../../overrides/
+  features:
+    - navigation.expand
+    - navigation.tabs
+    - toc.integrate
+  palette:
+    primary: custom
+    accent: custom
+    text: custom
+    background: custom
+    highlight: custom
+  logo: assets/images/ods-small-eggshell.png
+  favicon: assets/images/favicon.ico
+
+plugins:
+  - search:
+      lang: 
+        - en
+  - awesome-pages
+
+extra:
+  # analytics:
+  #   provider: google
+  #   property: G-N7RXJMH84M
+  consent:
+    title: Cookie Consent
+    description: >-
+      We use cookies to track visits, stored anonymously. With your consent, you're helping us to make our documentation better. See our <a href="https://mobilitydata.org/privacy-policy/">Privacy Policy</a>.
+    actions:
+        - accept
+        - reject
+        - manage
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/MobilityData
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/mobilitydata
+    - icon: fontawesome/brands/slack
+      link: https://share.mobilitydata.org/slack
+  # alternate:
+  #   - name: English
+  #     link: /
+  #     lang: en
+
+extra_javascript:
+  - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
+
+extra_css:
+  - https://use.fontawesome.com/releases/v5.13.0/css/all.css
+  - assets/stylesheets/ods.css
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.smartsymbols
+  - meta
+  - toc:
+      # insert a blank space before the character
+      permalink: " ¶"
+  - smarty
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - About:
+    - about/about.md
+    - Initial Specification Development Process: about/spec-development.md
+    - Contributors: about/contributors.md
+    - Attribution: about/attribution.md
+  - Specification:
+    - spec/index.md
+    - Revision History: spec/revision-history.md
+    - Examples: spec/examples.md
+  - Governance: 
+    - governance/governance.md
+    - Board Actions: governance/actions.md
+    - Board Meetings: governance/board-meetings.md
+    - Contributor Meetings: governance/contributor-meetings.md
+    - Policies:
+      - Change Management: governance/policies/change-management-versioning.md
+      - Board Composition: governance/policies/board-composition.md
+      - Board Decision Making: governance/policies/board-decisionmaking.md
+      - Code of Conduct: governance/policies/code-of-conduct.md
+      - Contributor License Agreement: governance/policies/CLA.md
+      - Repository Access: governance/policies/repository-organization-access.md
+  - Resources:
+    - Handouts + Presentations: resources/resources.md
+    - Frequently Asked Questions: resources/faq.md
+    - Implementation Guide: resources/implementation-guide.md
+
+copyright: |
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/cal-itp/operational-data-standard">TODS Project</a> by <span property="cc:attributionName">TODS Board of Directors</span> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
