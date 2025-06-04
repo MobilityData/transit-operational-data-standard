@@ -1,6 +1,6 @@
 site_name: "Transit Operational Data Standard"
-site_url: https://tods.mobilitydata.org
-repo_url: https://github.com/MobilityData/tods.mobilitydata.org
+site_url: https://tods.mobilitydata.org/
+repo_url: https://github.com/MobilityData/operational-data-standard
 repo_name: TODS Specification
 docs_dir: ../../docs/en       # Where to find the English markdown files
 site_dir: ../../generated/    # Where to put the English HTML files
