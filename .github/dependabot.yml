@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"  # Adjust this if requirements.txt is in a subfolder
+    schedule:
+      interval: "weekly"  # You can also use "daily", "monthly", or "live"
+    allow:
+      - dependency-type: "direct"
+    open-pull-requests-limit: 2

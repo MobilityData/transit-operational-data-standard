@@ -8,7 +8,7 @@ represented here, please feel free to [create an issue in GitHub](https://github
 
 In this example, a bus driver is assigned to run 10000, which has four revenue trips on two pieces, all on the same block. The run also includes a pull-out, a pull-back, a pre-trip inspection, and a lunch break between the two pieces.
 
-![Diagram showing four trips, two deadheads, and other events.](single-run-diagram.png)
+![Diagram showing four trips, two deadheads, and other events.](examples/single-run-diagram.png)
 
 ### GTFS Files
 
@@ -122,7 +122,7 @@ daily,10000,90,10000-2,BLOCK-A,Operator,Pull-Back,deadhead-2,stop-1,14:50:00,2,g
 
 In this example, the bus driver assigned to run 10000 pulls out a bus, does trip 101 and part of trip 102, and then ends their day at `stop-2`. A new driver on run 20000 boards the bus, completes trip 102, then does trip 103 and trip 104, and pulls back to the garage.
 
-![Diagram showing four trips, with the second trip broken into two different assignments.](mid-trip-relief-diagram.png)
+![Diagram showing four trips, with the second trip broken into two different assignments.](examples/mid-trip-relief-diagram.png)
 
 This example uses the [exact same GTFS files as the previous example](#gtfs-files). Deadheads and nonrevenue locations are omitted in order to focus on the revenue trip assignments, so no `_supplement.txt` files are needed for this example. Only `run_events.txt` needs to change to reflect the multiple runs and mid-trip relief.
 
@@ -171,7 +171,7 @@ weekday,10000,30,BLOCK-A,deadhead       ,,stop-1,12:00:00,garage,12:10:00
 
 ## Employee Assignments
 
-This example uses [`employee_run_dates.txt`](/spec#employee_run_datestxt) to assign employees to runs (and trips).
+This example uses [`employee_run_dates.txt`](index.md#employee_run_datestxt) to assign employees to runs (and trips).
 
 In this example, `A` and `B` work Monday-Wednesday and Sunday. `C` and `D` work Thursday-Saturday.
 
@@ -187,7 +187,7 @@ weekend,0,0,0,0,0,1,1,20240701,20240707
 
 July 1, 2024 was a Monday.
 
-**[`run_events.txt`](/spec#run_eventstxt)**
+**[`run_events.txt`](index.md#run_eventstxt)**
 
 For this example, the purpose of this file is just to show which runs exist. Real runs would have more interesting data.
 
@@ -199,7 +199,7 @@ weekend,103,1,work,trip3,station,09:00:00,station,17:00:00
 weekend,104,1,work,trip4,station,09:00:00,station,17:00:00
 ```
 
-**[`employee_run_dates.txt`](/spec#employee_run_datestxt)**
+**[`employee_run_dates.txt`](index.md#employee_run_datestxt)**
 
 ```csv
 date,service_id,run_id,employee_id

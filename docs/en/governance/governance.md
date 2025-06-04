@@ -44,7 +44,7 @@ The TODS Project encompasses:
 
 Who and how decisions are made about the scope and direction of the TODS Project, including but not limited to the approved [roles and responsibilities](#roles) and the following policies:
 
-- [TODS Change Management and Versioning Policy](#tods-change-management--versioning-policy)
+- [TODS Change Management and Versioning Policy](#tods-change-management-versioning-policy)
 - [TODS Contributor Agreement](#tods-contributor-agreement)
 - [TODS Code of Conduct](#tods-code-of-conduct)
 - [TODS Use License](#tods-use-license)

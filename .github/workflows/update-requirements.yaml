@@ -1,0 +1,76 @@
+name: Update requirements.txt
+
+on:
+  schedule:
+    - cron: '0 3 1 * *' # Runs every first day of the month @ 3 AM.
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  update-requirements:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11 # Adjust to your required Python version
+
+      - name: Load secrets from 1Password
+        id: onepw_secrets
+        uses: 1password/load-secrets-action@v2.0.0
+        with:
+            export-env: true # Export loaded secrets as environment variables
+        env:
+            OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+            GITHUB_TOKEN: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/GitHub generic action token for all repos/credential"
+
+      - name: Create virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          python -m pip install --upgrade pip
+
+      - name: Install pur
+        run: |
+          source venv/bin/activate
+          pip install pur
+
+      - name: Update requirements.txt
+        run: |
+          source venv/bin/activate
+          pur -r requirements.txt
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --exit-code; then
+            echo "changes=false" >> $GITHUB_ENV
+          else
+            echo "changes=true" >> $GITHUB_ENV
+          fi
+
+      - name: Create Branch Name
+        id: createbranchname
+        if: env.changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        run: |
+          branch_name="update-requirements-$(date +'%Y%m%d')"
+          echo "branchname=branch_name" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        id: createpr
+        if: env.changes == 'true'
+        uses: peter-evans/create-pull-request@v7.0.6
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          sign-commits: true
+          assignees: "fredericsimard"
+          branch: ${{ env.branchname }}
+          commit-message: 'This PR updates the `requirements.txt` file with the latest versions of dependencies.'
+          title: 'Monthly `requirements.txt` update'
+          body: |
+            This PR updates the `requirements.txt` file with the latest versions of dependencies.

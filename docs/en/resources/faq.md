@@ -34,7 +34,7 @@ Cal-ITP is a statewide initiative of the California State Transportation Agency 
 
 ## What is the TODS Working Group?
 
-The Transit Operational Data Standard working group was convened by staff from the California Integrated Travel Project (Cal-ITP) as part of its goal to provide complete, accurate, and up-to-date transit data to customers and respective agencies. Working group members include major transit agencies across the United States and many of the largest transit software companies in North America. Visit our [Working Group page](../about/working-group.md) for a full list of members.
+The Transit Operational Data Standard working group was convened by staff from the California Integrated Travel Project (Cal-ITP) as part of its goal to provide complete, accurate, and up-to-date transit data to customers and respective agencies. Working group members include major transit agencies across the United States and many of the largest transit software companies in North America. Visit our [Working Group page](../resources/faq.md#what-is-the-tods-working-group) for a full list of members.
 
 ## Why is Cal-ITP leading this effort?
 
