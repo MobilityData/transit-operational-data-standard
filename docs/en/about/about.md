@@ -1,6 +1,6 @@
 # About TODS
 
-The Transit Operational Data Standard ("TODS") is managed by [MobilityData](https://mobilitydata.org) serving as the [TODS Manager](../governance/governance.md#TODS-manager) under the authority of the [TODS Board](../governance/governance.md#TODS-board-of-directors) with basic monetary support through 2025 from the [California Integrated Travel Project (Cal-ITP)](https://cal-itp.org).
+The Transit Operational Data Standard ("TODS") is managed by [MobilityData](https://mobilitydata.org) serving as the [TODS Manager](../governance/governance.md#tods-manager) under the authority of the [TODS Board](../governance/governance.md#tods-board-of-directors) with basic monetary support through 2025 from the [California Integrated Travel Project (Cal-ITP)](https://cal-itp.org).
 
 TODS was [initially developed](spec-development.md) in 2021-2022 by the [TODS Working Group](contributors.md) (now known as *contributors*) using resources from the [California Integrated Travel Project (Cal-ITP)](https://cal-itp.org) in order to:
 

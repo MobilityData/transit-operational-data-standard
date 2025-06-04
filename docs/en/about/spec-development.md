@@ -64,5 +64,5 @@ Recognizing that a State DOT is not the ideal place to manage a data standard, i
 In January 2024:
 
 - the day-to-day management of the TODS standard will be assumed by [MobilityData](https://mobilitydata.org), the same organization that manages [GTFS](https://gtfs.org) (upon which TODS relies); and
-- the ownership and key decisions about TODS will be transfered from Cal-ITP to an [independent board](../governance/governance.md#TODS-board-of-directors) composed of transit agencies, and both schedule and CAD/AVL vendors.
+- the ownership and key decisions about TODS will be transfered from Cal-ITP to an [independent board](../governance/governance.md#tods-board-of-directors) composed of transit agencies, and both schedule and CAD/AVL vendors.
 - future spec development will be governed by the [change management and versioning policy](../governance/policies/change-management-versioning.md)
