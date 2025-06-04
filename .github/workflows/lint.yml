@@ -11,6 +11,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v2
-      - uses: pre-commit/action@v3.0.1
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-python@v5.6.0
       - uses: pre-commit/action@v3.0.1
