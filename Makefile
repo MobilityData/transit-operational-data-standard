@@ -7,7 +7,9 @@ clean:
 	rm -rf generated/
 
 serve: clean
-	mkdocs serve -f config/en/mkdocs.yml --dev-addr 127.0.0.1:8000 --watch overrides &
+	@echo "Starting MkDocs server..."
+	@trap 'echo "Stopping MkDocs server..."; pkill -f "mkdocs serve"' SIGINT SIGTERM; \
+	mkdocs serve -f config/en/mkdocs.yml --dev-addr 127.0.0.1:8000 --watch overrides
 
 build: clean
 	mkdir -p generated  # Ensure the folder exists
