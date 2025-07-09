@@ -169,9 +169,152 @@ weekday,10000,30,BLOCK-A,run-as-directed,,stop-1,09:00:00,stop-1,12:00:00
 weekday,10000,30,BLOCK-A,deadhead       ,,stop-1,12:00:00,garage,12:10:00
 ```
 
+## Jobs of entirely nonrevenue operations
+
+A track inspection train operates once per week, with a separate crew. It's scheduled and operated separately from other service, so is given its own service ID separate from any trips in the public GTFS file. In this example, the route and stops are assumed to be defined in the public GTFS.
+
+### `calendar_supplement.txt`
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+inspection_train,0,0,0,0,0,0,1,20240601,20241231
+```
+
+### `trips_supplement.txt`
+
+```csv
+route_id,service_id,trip_id,TODS_trip_type,direction_id
+line1,inspection_train,inspection_line1_ob,deadhead,0
+line1,inspection_train,inspection_line1_ib,deadhead,1
+```
+
+### `stop_times_supplement.txt`
+
+```csv
+trip_id,stop_id,arrival_time
+inspection_line1_ob,downtown,01:00:00
+inspection_line1_ob,anytown,01:45:00
+inspection_line1_ib,anytown,02:00:00
+inspection_line1_ib,downtown,02:45:00
+```
+
+### `run_events.txt`
+
+This file references the service ID and trip ID defined in the other supplement files.
+
+```csv
+service_id,run_id,event_sequence,event_type,trip_id,start_location,start_time,end_location,end_time
+inspection_train ,1 ,1 ,sign-in  ,                    ,main_terminal ,00:45:00 ,main_terminal ,00:45:00
+inspection_train ,1 ,2 ,operator ,inspection_line1_ob ,downtown      ,01:00:00 ,anytown       ,01:45:00
+inspection_train ,1 ,3 ,operator ,inspection_line1_ib ,anytown       ,02:00:00 ,downtown      ,02:45:00
+inspection_train ,1 ,4 ,sign-off ,                    ,main_terminal ,03:00:00 ,main_terminal ,03:00:00
+```
+
+## Distinct Crew and Trip schedule scenarios
+
+These examples show situations where the crew schedules in `run_events.txt` use different service IDs than the trips they work on, as is allowed by [the spec](/spec#service_id-crew-schedules-and-trip-schedules). Most agencies will not need to model a situation like this.
+
+In all these cases, the trips and service IDs in the public GTFS file are not modified. New service IDs are created in the calendar supplement files, and runs that operate on those dates are described in `run_events.txt`.
+
+### Extra staffing for a special event
+
+Due to a baseball game, an additional ticket collector will be assigned to supplement the existing crew on train 101, serving the ballpark.
+
+#### `calendar.txt`
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+weekday,1,1,1,1,1,0,0,20240101,20241231
+```
+
+#### `trips.txt`
+
+```csv
+route_id,service_id,trip_id,block_id
+route,weekday,101,BLOCK-A
+```
+
+#### `calendar_dates_supplement.txt`
+
+```csv
+service_id,date,exception_type
+gameday,20240820,1
+gameday,20240821,1
+gameday,20240827,1
+gameday,20240903,1
+```
+
+#### `run_events.txt`
+
+```csv
+service_id,run_id,event_sequence,block_id,job_type,event_type,trip_id,start_location,start_time,end_location,end_time
+weekday,1,1,       ,collector,sign-in        ,   ,main_terminal,14:00:00,main_terminal,14:15:00
+weekday,1,2,BLOCK-A,collector,collector      ,101,main_terminal,14:45:00,ballpark     ,15:30:00
+gameday,2,1,       ,collector,sign-in        ,   ,main_terminal,14:00:00,main_terminal,14:15:00
+gameday,2,2,BLOCK-A,collector,extra collector,101,main_terminal,14:45:00,ballpark     ,15:30:00
+```
+
+### Trip worked by different runs on different dates
+
+Consider a bus network between West City, Eastland, and Northingdon. Route 1 runs between West City and Eastland via Northingdon, whereas Route 2 runs directly between the two cities.
+
+To lengthen a short layover and improve on-time performance, the driver working the 10:45am Route 1 departure and the driver of the 11am Route 2 departure will exchange these trips effective September 2024.
+
+The public-facing schedule will not change. The trips remain on the service `weekday`. The runs are scheduled on new services `summer` and `fall`, which together cover all of the dates in `weekday`.
+
+![Diagram showing four trips on two runs, with the assignments rearranged in the fall.](examples/different-runs-same-trips.png)
+
+#### `calendar.txt`
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+weekday,1,1,1,1,1,0,0,20240601,20241231
+```
+
+#### `trips.txt`
+
+```csv
+route_id,service_id,trip_id,trip_headsign,direction_id
+1,weekday,101,Eastland via Northingdon,1
+2,weekday,201,Eastland,1
+1,weekday,102,West City via Northingdon,0
+2,weekday,202,West City,0
+```
+
+#### `calendar_supplement.txt`
+
+To detail the presence of the new `service_id`s and assign them to their applicable days of the week, the runs can be added to the calendar via `calendar_supplement.txt`:
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+summer,1,1,1,1,1,0,0,20240601,20240831
+fall  ,1,1,1,1,1,0,0,20240901,20241231
+```
+
+#### `run_events.txt`
+
+The current runs can be modeled with service_id `summer`, and mapped to the existing `weekday` trips. The future runs can be modeled with service_id `fall`, also mapped to the existing `weekday` trips. The service_id `weekday` is already defined in `calendar.txt`, but neither `summer` nor `fall` are.
+
+```csv
+service_id ,run_id ,event_sequence ,block_id ,event_type ,trip_id ,start_location ,start_time ,end_location ,end_time
+summer ,1 ,20 ,A ,drive ,101 ,westcity ,09:00:00 ,eastland ,10:30:00
+summer ,1 ,30 ,A ,drive ,102 ,eastland ,10:45:00 ,westcity ,12:15:00
+
+summer ,2 ,20 ,B ,drive ,201 ,westcity ,09:00:00 ,eastland ,10:00:00
+summer ,2 ,30 ,B ,drive ,202 ,eastland ,11:00:00 ,westcity ,12:00:00
+
+fall   ,1 ,20 ,A ,drive ,101 ,westcity ,09:00:00 ,eastland ,10:30:00
+fall   ,1 ,30 ,A ,drive ,202 ,eastland ,11:00:00 ,westcity ,12:00:00
+
+fall   ,2 ,20 ,B ,drive ,201 ,westcity ,09:00:00 ,eastland ,10:00:00
+fall   ,2 ,30 ,B ,drive ,102 ,eastland ,10:45:00 ,westcity ,12:15:00
+```
+
+(In this example, block IDs are listed in `run_events.txt` but not `trips.txt` because the blocks would also change with the schedule change.)
+
 ## Employee Assignments
 
-This example uses [`employee_run_dates.txt`](index.md#employee_run_datestxt) to assign employees to runs (and trips).
+This example uses [`employee_run_dates.txt`](/spec#employee_run_datestxt) to assign employees to runs (and trips).
 
 In this example, `A` and `B` work Monday-Wednesday and Sunday. `C` and `D` work Thursday-Saturday.
 
@@ -187,7 +330,7 @@ weekend,0,0,0,0,0,1,1,20240701,20240707
 
 July 1, 2024 was a Monday.
 
-**[`run_events.txt`](index.md#run_eventstxt)**
+**[`run_events.txt`](/spec#run_eventstxt)**
 
 For this example, the purpose of this file is just to show which runs exist. Real runs would have more interesting data.
 
@@ -199,7 +342,7 @@ weekend,103,1,work,trip3,station,09:00:00,station,17:00:00
 weekend,104,1,work,trip4,station,09:00:00,station,17:00:00
 ```
 
-**[`employee_run_dates.txt`](index.md#employee_run_datestxt)**
+**[`employee_run_dates.txt`](/spec#employee_run_datestxt)**
 
 ```csv
 date,service_id,run_id,employee_id
