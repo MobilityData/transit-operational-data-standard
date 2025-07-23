@@ -312,6 +312,27 @@ fall   ,2 ,30 ,B ,drive ,102 ,eastland ,10:45:00 ,westcity ,12:15:00
 
 (In this example, block IDs are listed in `run_events.txt` but not `trips.txt` because the blocks would also change with the schedule change.)
 
+## Vehicle Assignments
+
+Vehicles are assigned by service date. In this example, vehicle assignments are provided for 3 consecutive days from February 5 through 7.
+
+### `vehicles.txt`
+
+```csv
+vehicle_id,vehicle_label,license_plate
+bus-1,Old Reliable,OR-E285104
+bus-2,Buster,OR-E251432
+```
+
+### `vehicle_assignments.txt`
+
+```csv
+date,service_id,block_id,vehicle_id
+20250205,daily,BLOCK-A,bus-1
+20250206,daily,BLOCK-A,bus-2
+20250207,daily,BLOCK-A,bus-1
+```
+
 ## Employee Assignments
 
 This example uses [`employee_run_dates.txt`](/spec#employee_run_datestxt) to assign employees to runs (and trips).
