@@ -24,6 +24,8 @@ All files are optional.
 | routes_supplement.txt | Supplement | Supplements and modifies GTFS [routes.txt](https://github.com/google/transit/blob/master/gtfs/spec/en/reference.md#routestxt) with internal route identifiers and other non-public route identification. |
 | run_events.txt | TODS-Specific | Lists all trips and other scheduled activities to be performed by a member of personnel during a run. |
 | employee_run_dates.txt | TODS-Specific | Assigns employees to runs. |
+| vehicles.txt | TODS-Specific | Lists fleet vehicles with attributes for reference in `vehicle_assignments.txt` |
+| vehicle_assignments.txt | TODS-Specific | Assign vehicles to trips by `service_id` and `block_id`. |
 
 _The use of the Supplement standard to modify other GTFS files is not yet formally adopted into the specification and remains subject to change. Other files may be formally adopted in the future._
 
@@ -163,3 +165,30 @@ Primary Key: `*`
 | `service_id` | ID referencing [`run_events.txt`](#run_eventstxt) | Required | Part of the Run ID, which is refered to as `(service_id, run_id)`. See [Run ID Uniqueness](#run-id-uniqueness). |
 | `run_id` | ID referencing [`run_events.txt`](#run_eventstxt) | Required | The run that's added to this employee's schedule. |
 | `employee_id` | ID | Required | References an agency's external systems. Employee IDs are not used elsewhere in TODS. |
+
+### `vehicles.txt`
+
+Primary Key: `vehicle_id`
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `vehicle_id` | ID, primary key | Required | Defines an ID for a vehicle. It is *recommended* but not required to match the `vehicle_id` in GTFS-realtime feeds. |
+| `vehicle_label` | Text | Optional | Free text label for a vehicle, e.g. bus number or vessel name. |
+| `license_plate` | Text | Optional | License number or global identifier for the vehicle, e.g. “E898656”. The field name was chosen to align with the `license_plate` field in GTFS-Realtime. It may specify a different global identifier, particularly for non-road vehicle types without license plates, e.g. Maritime Mobile Service Identity (MMSI) for ferries. |
+
+*Note for future-compatibility:* Future TODS versions may support vehicle couplings: specifically, train cars (individual vehicles) that comprise a train set. Such a proposal is described by the [GTFS-VehicleCouplings draft extension](http://bit.ly/gtfs-vehicles).
+
+### `vehicle_assignments.txt`
+
+Primary Key: `(date, block_id, service_id)`
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `date` | Date | Required |  |
+| `service_id` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Optional | Identifies a set of *service days* when the trip is scheduled to take place. Note the [https://github.com/google/transit/blob/master/gtfs/spec/en/reference.md#term-definitions](GTFS definition) of *service day* is invoked here. Required if `block_id`s are repeated between different `service_id`s. |
+| `block_id`		  | ID referencing `trips.block_id` | Required | Identifies the block. |
+| `vehicle_id` | ID referencing `vehicles.vehicle_id` | Required | Refers to a specific vehicle in the transit fleet. |
+
+Not every block and date combo needs to have a vehicle specified.
+
+*Note for future-compatibility:* `vehicle_id` field may change to conditionally required in a future version where assignments may be made to either an individual vehicle OR a grouping of vehicles. See [GTFS-Vehicles](http://bit.ly/gtfs-vehicles) for how vehicle categories (types) might be incorporated.
