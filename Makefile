@@ -6,10 +6,6 @@ help: ## This help.
 clean:
 	rm -rf generated/
 
-setup:
-	pip3 install --force-reinstall -r requirements.txt && \
-	pip3 install git+https://${MATERIAL_INSIDER_GITHUB_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
-
 serve: clean
 	@echo "Starting MkDocs server..."
 	@trap 'echo "Stopping MkDocs server..."; pkill -f "mkdocs serve"' SIGINT SIGTERM; \
