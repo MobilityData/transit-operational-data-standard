@@ -54,7 +54,13 @@ TODS is an open standard which extends GTFS to define additional operational det
 
 TODS is used by transit agencies and the software which supports them including:
 
-TODS 1.0
+### TODS 2.0+
+
+:material-check-circle: [Optibus](https://optibus.com/)
+
+:material-check-circle-outline: [MBTA](http://mbta.com) (in progress)
+
+### TODS 1.0
 
 :material-check-circle: [WETA](https://weta.sanfranciscobayferry.com/)
 
@@ -69,10 +75,6 @@ TODS 1.0
 :material-check-circle: [Optibus](https://optibus.com/)
 
 :material-check-circle-outline: [Giro Hastus](https://www.giro.ca/) (on request)
-
-TODS 2.0
-
-:material-check-circle-outline: [MBTA](http://mbta.com) (in progress)
 
 ## How do I implement TODS?
 
