@@ -132,7 +132,7 @@ Primary Key: (`service_id`, `run_id`, `event_sequence`)
 
 For most agencies, crew schedules will use the same schedule as trips do. The `service_id` in `run_events.txt` will be the same `service_id` as is in `trips.txt` for all the trips that run works on, and the TODS feed won't need any additional entries in `calendar_supplement.txt`.
 
-Some agencies schedule crew schedules separately from vehicle/trip schedules, and runs and trips may occur on different `service_id`s. For example, a trip that occurs on service ID `weekday` may be worked by run `1` on service ID `monday`, and by run `2` on service ID `tuesday`. See the [examples](/spec/examples) for some situations where this may happen. In that case, `trips.txt:service_id` refers to dates when the trip occurs, and `run_events.txt:service_id` refers to the dates where the run works that trip. This means that producers do not need to rewrite the calendar for their public GTFS trip schedules in order to publish complex crew schedules in TODS.
+Some agencies schedule crew schedules separately from vehicle/trip schedules, and runs and trips may occur on different `service_id`s. For example, a trip that occurs on service ID `weekday` may be worked by run `1` on service ID `monday`, and by run `2` on service ID `tuesday`. See the [examples](examples.md) for some situations where this may happen. In that case, `trips.txt:service_id` refers to dates when the trip occurs, and `run_events.txt:service_id` refers to the dates where the run works that trip. This means that producers do not need to rewrite the calendar for their public GTFS trip schedules in order to publish complex crew schedules in TODS.
 
 Consumers who care about the dates that a trip occurs should use the `trip_id` (which is unique even across different services) to look up the trip in `trips.txt`, and get the `service_id` there.
 
@@ -200,7 +200,7 @@ Primary Key: `(date, block_id, service_id)`
 | Field Name | Type | Required | Description |
 |---|---|---|---|
 | `date` | Date | Required |  |
-| `service_id` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Optional | Identifies a set of *service days* when the trip is scheduled to take place. Note the [https://github.com/google/transit/blob/master/gtfs/spec/en/reference.md#term-definitions](GTFS definition) of *service day* is invoked here. Required if `block_id`s are repeated between different `service_id`s. |
+| `service_id` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Optional | Identifies a set of *service days* when the trip is scheduled to take place. Note the [GTFS definition](https://github.com/google/transit/blob/master/gtfs/spec/en/reference.md#term-definitions) of *service day* is invoked here. Required if `block_id`s are repeated between different `service_id`s. |
 | `block_id`		  | ID referencing `trips.block_id` | Required | Identifies the block. |
 | `vehicle_id` | ID referencing `vehicles.vehicle_id` | Required | Refers to a specific vehicle in the transit fleet. |
 

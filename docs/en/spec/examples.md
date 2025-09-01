@@ -212,7 +212,7 @@ inspection_train ,1 ,4 ,sign-off ,                    ,main_terminal ,03:00:00 ,
 
 ## Distinct Crew and Trip schedule scenarios
 
-These examples show situations where the crew schedules in `run_events.txt` use different service IDs than the trips they work on, as is allowed by [the spec](/spec#service_id-crew-schedules-and-trip-schedules). Most agencies will not need to model a situation like this.
+These examples show situations where the crew schedules in `run_events.txt` use different service IDs than the trips they work on, as is allowed by [the spec](index.md#service_id-crew-schedules-and-trip-schedules). Most agencies will not need to model a situation like this.
 
 In all these cases, the trips and service IDs in the public GTFS file are not modified. New service IDs are created in the calendar supplement files, and runs that operate on those dates are described in `run_events.txt`.
 
@@ -335,7 +335,7 @@ date,service_id,block_id,vehicle_id
 
 ## Employee Assignments
 
-This example uses [`employee_run_dates.txt`](/spec#employee_run_datestxt) to assign employees to runs (and trips).
+This example uses [`employee_run_dates.txt`](index.md#employee_run_datestxt) to assign employees to runs (and trips).
 
 In this example, `A` and `B` work Monday-Wednesday and Sunday. `C` and `D` work Thursday-Saturday.
 
@@ -351,7 +351,7 @@ weekend,0,0,0,0,0,1,1,20240701,20240707
 
 July 1, 2024 was a Monday.
 
-**[`run_events.txt`](/spec#run_eventstxt)**
+**[`run_events.txt`](index.md#run_eventstxt)**
 
 For this example, the purpose of this file is just to show which runs exist. Real runs would have more interesting data.
 
@@ -363,7 +363,7 @@ weekend,103,1,work,trip3,station,09:00:00,station,17:00:00
 weekend,104,1,work,trip4,station,09:00:00,station,17:00:00
 ```
 
-**[`employee_run_dates.txt`](/spec#employee_run_datestxt)**
+**[`employee_run_dates.txt`](index.md#employee_run_datestxt)**
 
 ```csv
 date,service_id,run_id,employee_id
