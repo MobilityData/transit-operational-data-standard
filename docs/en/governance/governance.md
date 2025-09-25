@@ -101,9 +101,9 @@ Responsibility for the governance of the TODS Project is divided among the follo
 | **Role** | **Who** |
 | -------- | ----- |
 | [TODS Board](#tods-board-of-directors) | <ul><li>[Joshua Fabian](https://www.linkedin.com/in/jfabi/), [Massachusetts Bay Transportation Authority (MBTA)](https://www.mbta.com/)</li><li>[Matthias Gruetzner](https://www.linkedin.com/in/matthias-gr%C3%BCtzner-6b469b187/), [INIT](https://www.initse.com/)</li><li>[Guilhem Hammel](https://www.linkedin.com/in/guilhemhammel/), [Giro](https://www.giro.ca/en-us/)</li><li>[Erik Jensen](https://www.linkedin.com/in/erik-jensen), [Chicago Transit Authority (CTA)](https://www.transitchicago.com/)</li><li>[Jeffrey Kessler](https://www.linkedin.com/in/jeffkess/), [Keolis Commuter Services](https://www.keolisna.com/)</li></ul> |
-| [TODS Board Coordinator](#tods-board-coordinator) | [Scott Frazier](https://github.com/safrazier17) |
+| [TODS Board Coordinator](#tods-board-coordinator) | [Joshua Fabian](https://www.linkedin.com/in/jfabi/) |
 | [TODS Manager](#tods-manager) | [MobilityData](https://mobilitydata.org) |
-| [TODS Program Manager](#tods-program-manager) | [Cristhian Hellion](https://github.com/Cristhian-HA), [MobilityData](https://mobilitydata.org) |
+| [TODS Program Manager](#tods-program-manager) | [Elias Cripotos](https://github.com/eliasmbd), [MobilityData](https://mobilitydata.org) |
 | [TODS Contributors](#tods-contributor) |  TBD |
 | [TODS Stakeholders](#tods-stakeholder) | Anyone interested in or could be directly affected by the TODS Project. |
 
