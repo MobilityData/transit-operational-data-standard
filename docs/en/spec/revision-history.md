@@ -2,6 +2,7 @@
 
 ## 16 April 2025
 TODS 2.1.0 is adopted
+
 * Adds new TODS-specific files `vehicle_assignments.txt`, `vehicles.txt`, and `employee_run_dates.txt`.
 * Adds new supplemental files `calendar_dates_supplement.txt` and `calendar_supplement.txt`
 

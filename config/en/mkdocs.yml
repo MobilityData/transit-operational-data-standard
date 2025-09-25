@@ -4,7 +4,6 @@ repo_url: https://github.com/MobilityData/operational-data-standard
 repo_name: TODS Specification
 docs_dir: ../../docs/en       # Where to find the English markdown files
 site_dir: ../../generated/    # Where to put the English HTML files
-# edit_uri: edit/main/docs
 
 theme:
   name: material
@@ -55,10 +54,11 @@ extra:
 
 extra_javascript:
   - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
+  - assets/javascript/fix-md-search.js
 
 extra_css:
   - https://use.fontawesome.com/releases/v5.13.0/css/all.css
-  - assets/stylesheets/ods.css
+  - assets/stylesheets/additional.css
 
 markdown_extensions:
   - admonition
@@ -112,12 +112,22 @@ nav:
     - Implementation Guide: resources/implementation-guide.md
 
 copyright: |
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/cal-itp/operational-data-standard">TODS Project</a> by <span property="cc:attributionName">TODS Board of Directors</span> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"></a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+                <a property="dct:title" rel="cc:attributionURL" href="https://github.com/MobilityData/transit-operational-data-standard">TODS Project</a> 
+                by <span property="cc:attributionName">TODS Board of Directors</span> is licensed under 
+                <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
+                  CC BY 4.0
+                  <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                      src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" 
+                      alt="Creative Commons">
+                  <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" 
+                      src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" 
+                      alt="Attribution">
+                </a>
+              </p>
+          </div>
+      </div>
+  </div>

@@ -13,28 +13,28 @@ graph LR
         M --> N
     end
     style Scheduling fill:#f4f1deff, stroke:#333, stroke-width:2px
-    style I fill:#81b29aff,stroke:#333,stroke-width:2px
-    style M fill:#81b29aff,stroke:#333,stroke-width:2px
-    style N fill:#81b29aff,stroke:#333,stroke-width:2px
+    style I fill:#BAE3CFff,stroke:#333,stroke-width:2px
+    style M fill:#BAE3CFff,stroke:#333,stroke-width:2px
+    style N fill:#BAE3CFff,stroke:#333,stroke-width:2px
 
     P[GTFS Schedule]
     S[TODS]
-    style P fill:#f2cc8fff,stroke:#333,stroke-width:2px
-    style S fill:#f2cc8fff,stroke:#333,stroke-width:2px
+    style P fill:#F4D39Fff,stroke:#333,stroke-width:2px
+    style S fill:#F4D39Fff,stroke:#333,stroke-width:2px
 
     subgraph Operations
         R[Dispatch]
     end
     style Operations fill:#f4f1deff, stroke:#333, stroke-width:2px
-    style R fill:#81b29aff,stroke:#333,stroke-width:2px
+    style R fill:#BAE3CFff,stroke:#333,stroke-width:2px
 
     I --> P
     P --> R
     I -->|Vehicle Blocks| M
     N --> S
     S --> R
-    linkStyle 3 stroke:#f2cc8fff,stroke-width:4px,stroke-dasharray: 5, 5
-    linkStyle 4 stroke:#f2cc8fff,stroke-width:4px,stroke-dasharray: 5, 5
+    linkStyle 3 stroke:#F4D39Fff,stroke-width:4px,stroke-dasharray: 5, 5
+    linkStyle 4 stroke:#F4D39Fff,stroke-width:4px,stroke-dasharray: 5, 5
 
 ```
 

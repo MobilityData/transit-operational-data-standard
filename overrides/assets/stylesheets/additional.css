@@ -1,0 +1,96 @@
+/* Define CSS variables based on theme colors */
+
+
+/* ==============================================
+   CSS VARIABLES - COLOR PALETTE
+   ============================================== */
+/* Palette source: https://coolors.co/palette/f4f1de-e07a5f-3d405b-BAE3CF-F4D39F*/
+:root {
+    --md-primary-fg-color: #3d405bff;   /* delft-blue */
+    --md-accent-fg-color: #BAE3CFff;    /* cambridge-blue */
+    --md-primary-bg-color: #f4f1deff;   /* eggshell */
+    --text-color: #3d405bff;            /* delft-blue: */
+    --md-code-hl-color: #e07a5fff;      /* burnt-sienna */
+    --highlight-outline: #F4D39Fff;     /* sunset */
+    --headers-text-color: #4F4F4F;      /* dark gray */
+}
+
+/* ==============================================
+   MKDOCS ELEMENTS
+   ============================================== */
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+    height: 2.5rem;
+}
+
+.md-header {
+    overflow: visible; /* Allow overflow */
+    background-color: var(--md-primary-fg-color);
+}
+
+.md-footer {
+    background-color: var(--text-color);
+    color: var(--md-default-bg-color);
+}
+
+/* Footer Icons */
+.md-footer .md-icon {
+  color: var(--text-color) !important;
+}
+
+.md-tabs {
+    position: relative; /* Make sure .md-tabs is positioned */
+    overflow: visible;  /* Allow overflow */
+    margin-bottom: 60px;
+}
+
+/* ==============================================
+   TYPOGRAPHY
+   ============================================== */
+
+/* Body and Link Styling for Readability */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    background-color: var(--md-primary-bg-color);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--headers-text-color);
+}
+
+a {
+  font-weight: bold; /* All Hyperlinks Bold */
+}
+
+a:hover {
+    color: var(--md-accent-fg-color);
+    font-weight: bold; /* All Hyperlinks Bold */
+}
+
+code {
+    background-color: var(--md-accent-fg-color); /* No border for a cleaner look */
+}
+
+/* ==============================================
+   TABLE STYLING
+   ============================================== */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid var(--md-primary-fg-color);
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--md-primary-fg-color);
+    color: var(--md-default-bg-color);
+}
