@@ -1,0 +1,71 @@
+name: Update requirements.txt
+
+on:
+  schedule:
+    - cron: '0 3 1 * *' # Runs every first day of the month @ 3 AM.
+  workflow_dispatch: # Allow manual runs
+
+jobs:
+  update-requirements:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup global variables
+        id: global_vars
+        run: |
+            echo "TODAYS_DAY=$(date '+%d')" >> $GITHUB_ENV # Ex.: 27
+            echo "TODAYS_MONTH=$(date '+%m')" >> $GITHUB_ENV # Ex.: 07
+            echo "TODAYS_YEAR=$(date '+%Y')" >> $GITHUB_ENV # Ex.: 2023
+            
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11 # Adjust to your required Python version
+
+      - name: Load secrets from 1Password
+        id: onepw_secrets
+        uses: 1password/load-secrets-action@v2.0.0
+        with:
+            export-env: true # Export loaded secrets as environment variables
+        env:
+            OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+            GITHUB_TOKEN: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/GitHub generic action token for all repos/credential"
+
+      - name: Install pur and update requirements file
+        run: |
+          pip install --upgrade pur
+          pur -r requirements.txt
+
+      - name: Remove venv from git tracking
+        run: |
+          git clean -fdX venv
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --exit-code requirements.txt; then
+            echo "changes=false" >> $GITHUB_ENV
+          else
+            echo "changes=true" >> $GITHUB_ENV
+          fi
+
+      - name: Create branch name
+        id: create_branch_name
+        run: |
+            echo "BRANCH=update-requirements-${{ env.TODAYS_YEAR }}-${{ env.TODAYS_MONTH }}-${{ env.TODAYS_DAY }}" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request
+        id: createpr
+        if: env.changes == 'true'
+        uses: peter-evans/create-pull-request@v7.0.6
+        with:
+          token: ${{ env.GITHUB_TOKEN }}
+          sign-commits: true
+          assignees: "fredericsimard"
+          branch: ${{ steps.create_branch_name.outputs.BRANCH }}
+          commit-message: 'This PR updates the `requirements.txt` file with the latest versions of dependencies.'
+          title: 'Monthly `requirements.txt` update'
+          body: 'This PR updates the `requirements.txt` file with the latest versions of dependencies.'

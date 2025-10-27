@@ -1,0 +1,43 @@
+name: Update website on server
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI or API.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '.gitignore'
+      - '.gitattributes'
+      - 'LICENSE'
+      - 'README.md'
+      - '.github/workflows/**'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Load secrets from 1Password
+      id: onepw_secrets
+      uses: 1password/load-secrets-action@v2.0.0
+      with:
+          export-env: true # Export loaded secrets as environment variables
+      env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          ACTION_GXFS_WEBSERVER_SSH_HOST: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/kttdw7r3jp6rir7rtgkwk2a22q/ACTION_GXFS_WEBSERVER_SSH_HOST"
+          ACTION_GXFS_WEBSERVER_SSH_PORT: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/kttdw7r3jp6rir7rtgkwk2a22q/ACTION_GXFS_WEBSERVER_SSH_PORT"
+          ACTION_GXFS_WEBSERVER_SSH_USER: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/kttdw7r3jp6rir7rtgkwk2a22q/ACTION_GXFS_WEBSERVER_SSH_USER"
+          ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/kttdw7r3jp6rir7rtgkwk2a22q/ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY"
+          
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ env.ACTION_GXFS_WEBSERVER_SSH_HOST }}
+        username: ${{ env.ACTION_GXFS_WEBSERVER_SSH_USER }}
+        key: ${{ env.ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY }}
+        port: ${{ env.ACTION_GXFS_WEBSERVER_SSH_PORT }}
+        script: |
+                    ./tods_mobilitydata_org_webaite_updater.sh
