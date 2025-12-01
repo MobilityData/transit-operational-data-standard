@@ -8,7 +8,7 @@ clean:
 
 setup:
 	pip3 install --force-reinstall -r requirements.txt && \
-	pip3 install git+https://${MATERIAL_INSIDER_GITHUB_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+	pip3 install --upgrade --force-reinstall mkdocs-material
 
 serve: clean
 	@echo "Starting MkDocs server..."
