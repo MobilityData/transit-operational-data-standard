@@ -13,7 +13,7 @@ The TODS Board Meeting Agendas + Minutes are available below.
 | 25 September 2025 | [Agenda](https://docs.google.com/document/d/13axpKpjCebxV5K2HP7elQLpF3rE1sRfViRcycHTJyRA/edit?usp=sharing) & [Minutes](https://docs.google.com/document/d/1vL6I_ArzQ2Wmx4sDypKciaje3yjzAU_J0tU5SIh0UoQ/edit?usp=sharing) |
 | 27 October 2025 | [Agenda](https://docs.google.com/document/d/18QTpPyFBT-ceGLgxS-zQEuKFqg3NkzsxJYPJg1qtZxs/edit?usp=sharing) & [Minutes](https://docs.google.com/document/d/1V-PYo_3NgbU59fvl2D48YcdaMz7cHPaiaQ6BQf5-2QM/edit?usp=sharing) |
 | 24 November 2025 | [Agenda](https://docs.google.com/document/d/1jUq-mC6py4X-zW9AxH7Mv74PpBTQR_nk2RlIWMoISJw/edit?usp=sharing) & [Minutes](https://docs.google.com/document/d/1ZJk4QQlSygS9tpDoqDmCFjaVKQlMOz-SdfPnCADKVOo/edit?usp=sharing) |
-| 22 December 2025 | [Agenda](https://docs.google.com/document/d/1tZ9kvzOcrH3vdw_zjCzkCgnndBizXN_ScjvUQCgu948/edit?usp=sharing) |
+| 22 December 2025 | [Agenda](https://docs.google.com/document/d/1tZ9kvzOcrH3vdw_zjCzkCgnndBizXN_ScjvUQCgu948/edit?usp=sharing) & [Minutes](https://docs.google.com/document/d/1NDd8TPhgsFFte087nW4XpxCNRXIuXWQ9wV75gVPODxk/edit?usp=sharing) |
 
 ## 2024
 
