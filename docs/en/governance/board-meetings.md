@@ -2,6 +2,12 @@
 
 The TODS Board Meeting Agendas + Minutes are available below.
 
+## 2026
+
+| **Date** | **Minutes** |
+| -------- | ---------- |
+| 26 January 2026 | [Agenda](https://docs.google.com/document/d/1ms1YwjVVyYbXQGMhpFrhgiLZj762YEvrE5TYW6gRjYw/edit?usp=sharing) |
+
 ## 2025
 
 | **Date** | **Minutes** |
