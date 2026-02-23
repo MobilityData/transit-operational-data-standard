@@ -7,7 +7,7 @@
 
 <img src="../../assets/images/2026-01-12_KesslerJeff_(Keolis)_[P26-20294]_The_Journey_of_TODS.jpg" alt="PDF Preview" style="width: 300px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 2px 2px 6px rgba(0,0,0,0.2);">
 
-<a href="/assets/2026-01-12_KesslerJeff_(Keolis)_[P26-20294]_The_Journey_of_TODS.pdf" download class="md-button md-button--primary">
+<a href="https://tods-transit.org/resources/assets/2026-01-12_KesslerJeff_(Keolis)_[P26-20294]_The_Journey_of_TODS.pdf" download class="md-button md-button--primary">
   <img src="../../assets/images/icon-pdf.png" alt="PDF" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;">
   Download PDF
 </a>

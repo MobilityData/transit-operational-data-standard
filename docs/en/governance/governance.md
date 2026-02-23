@@ -111,7 +111,7 @@ Responsibility for the governance of the TODS Project is divided among the follo
 
 <img src="../../assets/images/MOU_ODS_and_Mobility_Data_signed.jpg" alt="PDF Preview" style="width: 300px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 2px 2px 6px rgba(0,0,0,0.2);">
 
-<a href="/assets/MOU_ODS_and_Mobility_Data_signed.pdf" download class="md-button md-button--primary">
+<a href="https://tods-transit.org/governance/assets/MOU_ODS_and_Mobility_Data_signed.pdf" download class="md-button md-button--primary">
   <img src="../../assets/images/icon-pdf.png" alt="PDF" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;">
   Download PDF
 </a>
