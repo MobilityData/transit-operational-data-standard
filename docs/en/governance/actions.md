@@ -6,7 +6,9 @@ Record of actions taken by the TODS Board.
 
 | **Date** | **Action** | **Record (Yes - No - Abstain)** |
 | -------- | ---------- | ---------- |
-| 2025-03-26 | TODS Change Management and Versioning Policy ammended to stipulate that the TODS Manager will lead at least 1 development cycle annually.  | (4 - 0 - 0) |
+| 2025-09-25 | Joshua Fabian elected to replace Scott Frazier as Board Coordinator.  | (5 - 0 - 0) |
+| 2025-04-23 | Board approval of TODS Change Management and Versioning Policy amendment regarding development cycles.  | (5 - 0 - 0) |
+| 2025-03-26 | Direct TODS Program Manager to amend the TODS Change Management and Versioning Policy to stipulate that the TODS Manager will lead at least 1 development cycle annually.  | (4 - 0 - 0) |
 | 2025-01-22 | Member Tollison's resignation from the Board sparks a proposal to follow up with individuals previously expressing interest in serving on the Board as an immediate next step and following up with the Board with additional proposals to expand the pool of Board Member candidates in the future | (3 - 0 - 0) |
 | 2025-01-22 | Chair Jensen's employment was transfered without issue from his previous employement, to his new. Both positions were in public transit, not private enterprise. | (3 - 0 - 0) |
 | 2024-09-18 | Board voted to readd TODS 1.0 definitions back to site, with indication that updates were no longer being made based on TODS 1.0 and that all future updates would be based on TODS 2.0| (5 - 0 - 0) |
