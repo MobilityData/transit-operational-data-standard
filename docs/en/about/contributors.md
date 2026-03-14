@@ -40,7 +40,7 @@ Contributors are expected to commit to supporting the adopted TODS v1 specificat
 [Init](https://www.initse.com/enus/start/)  
 [Keolis](https://www.keolisna.com/)  
 [MV Transit](https://www.mvtransit.com/)  
-[Optibus](https://www.optibus.com/)  
+[Optibus](https://www.optibus.com/) :material-check-circle:  
 [Passio](https://passiotech.com/)  
 [Remix by Via](https://www.remix.com/)  :material-check-circle:  
 [Routematch / Uber](https://www.routematch.com/)  
