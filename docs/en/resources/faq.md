@@ -42,4 +42,4 @@ Cal-ITP developed the TODS initiative in response to feedback from local transit
 
 ## Have more questions?
 
-For additional information, please email [hello@calitp.org Attn: Scott Frazier / TODS](mailto:hello@calitp.org?subject=Scott Frazier / TODS).
+For additional information, please email us at [tods@mobilitydata.org](mailto:tods@mobilitydata.org).
