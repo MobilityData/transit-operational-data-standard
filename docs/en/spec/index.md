@@ -1,7 +1,7 @@
 
 # Reference
 
-The Transit Operational Data Standard was last updated on September 4, 2025 (v2.1.0). View the full [revision history](./revision-history.md).
+The Transit Operational Data Standard was last updated on 2025-04-16 (v2.1.0). View the full [revision history](./revision-history.md).
 
 ## Dataset Files
 
