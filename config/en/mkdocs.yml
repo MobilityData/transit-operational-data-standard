@@ -74,6 +74,9 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.smartsymbols
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
   - meta
   - toc:
       # insert a blank space before the character
@@ -110,6 +113,7 @@ nav:
     - Handouts + Presentations: resources/resources.md
     - Frequently Asked Questions: resources/faq.md
     - Implementation Guide: resources/implementation-guide.md
+    - Upcoming Engagements: resources/upcoming-engagements.md
 
 copyright: |
   <div class="container">
