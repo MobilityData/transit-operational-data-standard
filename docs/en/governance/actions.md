@@ -6,6 +6,7 @@ Record of actions taken by the TODS Board.
 
 | **Date** | **Action** | **Record (Yes - No - Abstain)** |
 | -------- | ---------- | ---------- |
+| 2026-03-23 | Board approval to recognize Board Chair as a named role on the TODS Governance page.  | (5 - 0 - 0) |
 | 2025-09-25 | Joshua Fabian elected to replace Scott Frazier as Board Coordinator.  | (5 - 0 - 0) |
 | 2025-04-23 | Board approval of TODS Change Management and Versioning Policy amendment regarding development cycles.  | (5 - 0 - 0) |
 | 2025-03-26 | Direct TODS Program Manager to amend the TODS Change Management and Versioning Policy to stipulate that the TODS Manager will lead at least 1 development cycle annually.  | (4 - 0 - 0) |
