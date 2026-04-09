@@ -100,11 +100,11 @@ Responsibility for the governance of the TODS Project is divided among the follo
 
 | **Role** | **Who** |
 | -------- | ----- |
-| [TODS Board](#tods-board-of-directors) | <ul><li>[Joshua Fabian](https://www.linkedin.com/in/jfabi/), [Massachusetts Bay Transportation Authority (MBTA)](https://www.mbta.com/)</li><li>[Matthias Gruetzner](https://www.linkedin.com/in/matthias-gr%C3%BCtzner-6b469b187/), [INIT](https://www.initse.com/)</li><li>[Guilhem Hammel](https://www.linkedin.com/in/guilhemhammel/), [Giro](https://www.giro.ca/en-us/)</li><li>[Erik Jensen](https://www.linkedin.com/in/erik-jensen), [Chicago Transit Authority (CTA)](https://www.transitchicago.com/) (TIDES Board Chair)</li><li>[Jeffrey Kessler](https://www.linkedin.com/in/jeffkess/), [Keolis Commuter Services](https://www.keolisna.com/)</li></ul> |
+| [TODS Board](#tods-board-of-directors) | <ul><li>[Joshua Fabian](https://www.linkedin.com/in/jfabi/), [Massachusetts Bay Transportation Authority (MBTA)](https://www.mbta.com/)</li><li>[Matthias Gruetzner](https://www.linkedin.com/in/matthias-gr%C3%BCtzner-6b469b187/), [INIT](https://www.initse.com/)</li><li>[Guilhem Hammel](https://www.linkedin.com/in/guilhemhammel/), [Giro](https://www.giro.ca/en-us/)</li><li>[Erik Jensen](https://www.linkedin.com/in/erik-jensen), [Chicago Transit Authority (CTA)](https://www.transitchicago.com/) (TODS Board Chair)</li><li>[Jeffrey Kessler](https://www.linkedin.com/in/jeffkess/), [Keolis Commuter Services](https://www.keolisna.com/)</li></ul> |
 | [TODS Board Coordinator](#tods-board-coordinator) | [Joshua Fabian](https://www.linkedin.com/in/jfabi/) |
 | [TODS Manager](#tods-manager) | [MobilityData](https://mobilitydata.org) |
 | [TODS Program Manager](#tods-program-manager) | [Carl Fredlund](https://github.com/carlfredl), [MobilityData](https://mobilitydata.org) |
-| [TODS Contributors](#tods-contributor) |  [Contributors via GitHub](https://github.com/TIDES-transit/TIDES/graphs/contributors) |
+| [TODS Contributors](#tods-contributor) |  [Contributors via GitHub](https://github.com/MobilityData/transit-operational-data-standard/graphs/contributors) |
 | [TODS Stakeholders](#tods-stakeholder) | Anyone interested in or could be directly affected by the TODS Project. |
 
 ### Memorandum of Understanding for TODS Management
