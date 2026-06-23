@@ -166,7 +166,7 @@ service_id,run_id,event_sequence,block_id,event_type,trip_id,start_location,star
 weekday,10000,10,       ,sign-in        ,,garage,08:45:00,garage,08:50:00
 weekday,10000,20,BLOCK-A,deadhead       ,,garage,08:50:00,stop-1,09:00:00
 weekday,10000,30,BLOCK-A,run-as-directed,,stop-1,09:00:00,stop-1,12:00:00
-weekday,10000,30,BLOCK-A,deadhead       ,,stop-1,12:00:00,garage,12:10:00
+weekday,10000,40,BLOCK-A,deadhead       ,,stop-1,12:00:00,garage,12:10:00
 ```
 
 ## Jobs of entirely nonrevenue operations
