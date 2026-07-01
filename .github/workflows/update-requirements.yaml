@@ -18,16 +18,16 @@ jobs:
             echo "TODAYS_YEAR=$(date '+%Y')" >> $GITHUB_ENV # Ex.: 2023
             
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6.3.0
         with:
           python-version: 3.11 # Adjust to your required Python version
 
       - name: Load secrets from 1Password
         id: onepw_secrets
-        uses: 1password/load-secrets-action@v4.0.0
+        uses: 1password/load-secrets-action@v4.0.1
         with:
             export-env: true # Export loaded secrets as environment variables
         env:
