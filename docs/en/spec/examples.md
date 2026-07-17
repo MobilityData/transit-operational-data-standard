@@ -107,14 +107,14 @@ deadhead-2,15:00:00,garage,3
 
 ```csv
 service_id,run_id,event_sequence,piece_id,block_id,job_type,event_type,trip_id,start_location,start_time,start_mid_trip,end_location,end_time,end_mid_trip
-daily,10000,10,       ,       ,Operator,Report Time,        ,garage,09:30:00,,garage,09:30:00,
-daily,10000,20,       ,       ,Operator,Pre-Trip Inspection,,garage,09:35:00,,garage,09:45:00,
-daily,10000,30,10000-1,BLOCK-A,Operator,Pull-Out,deadhead-1 ,garage,09:45:00,2,stop-1,09:55:00,2
-daily,10000,40,10000-1,BLOCK-A,Operator,Operator,101        ,stop-1,10:00:00,2,stop-3,10:50:00,2
-daily,10000,50,10000-1,BLOCK-A,Operator,Operator,102        ,stop-3,11:00:00,2,stop-1,11:50:00,2
-daily,10000,60,       ,       ,Operator,Break,              ,stop-1,11:50:00,,stop-1,13:00:00,
-daily,10000,70,10000-2,BLOCK-A,Operator,Operator,103        ,stop-1,13:00:00,2,stop-3,13:50:00,2
-daily,10000,80,10000-2,BLOCK-A,Operator,Operator,104        ,stop-3,14:00:00,2,stop-1,14:50:00,2
+daily,10000,10,,,Operator,Report Time,,garage,09:30:00,,garage,09:30:00,
+daily,10000,20,,,Operator,Pre-Trip Inspection,,garage,09:35:00,,garage,09:45:00,
+daily,10000,30,10000-1,BLOCK-A,Operator,Pull-Out,deadhead-1,garage,09:45:00,2,stop-1,09:55:00,2
+daily,10000,40,10000-1,BLOCK-A,Operator,Operator,101,stop-1,10:00:00,2,stop-3,10:50:00,2
+daily,10000,50,10000-1,BLOCK-A,Operator,Operator,102,stop-3,11:00:00,2,stop-1,11:50:00,2
+daily,10000,60,,,Operator,Break,,stop-1,11:50:00,,stop-1,13:00:00,
+daily,10000,70,10000-2,BLOCK-A,Operator,Operator,103,stop-1,13:00:00,2,stop-3,13:50:00,2
+daily,10000,80,10000-2,BLOCK-A,Operator,Operator,104,stop-3,14:00:00,2,stop-1,14:50:00,2
 daily,10000,90,10000-2,BLOCK-A,Operator,Pull-Back,deadhead-2,stop-1,14:50:00,2,garage,15:00:00,2
 ```
 
@@ -163,10 +163,10 @@ In this example (unrelated to the previous examples), an operator signs in for t
 
 ```csv
 service_id,run_id,event_sequence,block_id,event_type,trip_id,start_location,start_time,end_location,end_time
-weekday,10000,10,       ,sign-in        ,,garage,08:45:00,garage,08:50:00
-weekday,10000,20,BLOCK-A,deadhead       ,,garage,08:50:00,stop-1,09:00:00
+weekday,10000,10,,sign-in,,garage,08:45:00,garage,08:50:00
+weekday,10000,20,BLOCK-A,deadhead,,garage,08:50:00,stop-1,09:00:00
 weekday,10000,30,BLOCK-A,run-as-directed,,stop-1,09:00:00,stop-1,12:00:00
-weekday,10000,40,BLOCK-A,deadhead       ,,stop-1,12:00:00,garage,12:10:00
+weekday,10000,40,BLOCK-A,deadhead,,stop-1,12:00:00,garage,12:10:00
 ```
 
 ## Jobs of entirely nonrevenue operations
@@ -204,10 +204,10 @@ This file references the service ID and trip ID defined in the other supplement 
 
 ```csv
 service_id,run_id,event_sequence,event_type,trip_id,start_location,start_time,end_location,end_time
-inspection_train ,1 ,1 ,sign-in  ,                    ,main_terminal ,23:45:00 ,main_terminal ,23:45:00
-inspection_train ,1 ,2 ,operator ,inspection_line1_ob ,downtown      ,24:00:00 ,anytown       ,24:45:00
-inspection_train ,1 ,3 ,operator ,inspection_line1_ib ,anytown       ,25:00:00 ,downtown      ,25:45:00
-inspection_train ,1 ,4 ,sign-off ,                    ,main_terminal ,26:00:00 ,main_terminal ,26:00:00
+inspection_train,1,1,sign-in,,main_terminal,23:45:00,main_terminal,23:45:00
+inspection_train,1,2,operator,inspection_line1_ob,downtown,24:00:00,anytown,24:45:00
+inspection_train,1,3,operator,inspection_line1_ib,anytown,25:00:00,downtown,25:45:00
+inspection_train,1,4,sign-off,,main_terminal,26:00:00,main_terminal,26:00:00
 ```
 
 ## Distinct Crew and Trip schedule scenarios
@@ -248,10 +248,10 @@ gameday,20240903,1
 
 ```csv
 service_id,run_id,event_sequence,block_id,job_type,event_type,trip_id,start_location,start_time,end_location,end_time
-weekday,1,1,       ,collector,sign-in        ,   ,main_terminal,14:00:00,main_terminal,14:15:00
-weekday,1,2,BLOCK-A,collector,collector      ,101,main_terminal,14:45:00,ballpark     ,15:30:00
-gameday,2,1,       ,collector,sign-in        ,   ,main_terminal,14:00:00,main_terminal,14:15:00
-gameday,2,2,BLOCK-A,collector,extra collector,101,main_terminal,14:45:00,ballpark     ,15:30:00
+weekday,1,1,,collector,sign-in,,main_terminal,14:00:00,main_terminal,14:15:00
+weekday,1,2,BLOCK-A,collector,collector,101,main_terminal,14:45:00,ballpark,15:30:00
+gameday,2,1,,collector,sign-in,,main_terminal,14:00:00,main_terminal,14:15:00
+gameday,2,2,BLOCK-A,collector,extra collector,101,main_terminal,14:45:00,ballpark,15:30:00
 ```
 
 ### Trip worked by different runs on different dates
@@ -288,7 +288,7 @@ To detail the presence of the new `service_id`s and assign them to their applica
 ```csv
 service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
 summer,1,1,1,1,1,0,0,20240601,20240831
-fall  ,1,1,1,1,1,0,0,20240901,20241231
+fall,1,1,1,1,1,0,0,20240901,20241231
 ```
 
 #### `run_events.txt`
@@ -296,18 +296,18 @@ fall  ,1,1,1,1,1,0,0,20240901,20241231
 The current runs can be modeled with service_id `summer`, and mapped to the existing `weekday` trips. The future runs can be modeled with service_id `fall`, also mapped to the existing `weekday` trips. The service_id `weekday` is already defined in `calendar.txt`, but neither `summer` nor `fall` are.
 
 ```csv
-service_id ,run_id ,event_sequence ,block_id ,event_type ,trip_id ,start_location ,start_time ,end_location ,end_time
-summer ,1 ,20 ,A ,drive ,101 ,westcity ,09:00:00 ,eastland ,10:30:00
-summer ,1 ,30 ,A ,drive ,102 ,eastland ,10:45:00 ,westcity ,12:15:00
+service_id,run_id,event_sequence,block_id,event_type,trip_id,start_location,start_time,end_location,end_time
+summer,1,20,A,drive,101,westcity,09:00:00,eastland,10:30:00
+summer,1,30,A,drive,102,eastland,10:45:00,westcity,12:15:00
 
-summer ,2 ,20 ,B ,drive ,201 ,westcity ,09:00:00 ,eastland ,10:00:00
-summer ,2 ,30 ,B ,drive ,202 ,eastland ,11:00:00 ,westcity ,12:00:00
+summer,2,20,B,drive,201,westcity,09:00:00,eastland,10:00:00
+summer,2,30,B,drive,202,eastland,11:00:00,westcity,12:00:00
 
-fall   ,1 ,20 ,A ,drive ,101 ,westcity ,09:00:00 ,eastland ,10:30:00
-fall   ,1 ,30 ,A ,drive ,202 ,eastland ,11:00:00 ,westcity ,12:00:00
+fall,1,20,A,drive,101,westcity,09:00:00,eastland,10:30:00
+fall,1,30,A,drive,202,eastland,11:00:00,westcity,12:00:00
 
-fall   ,2 ,20 ,B ,drive ,201 ,westcity ,09:00:00 ,eastland ,10:00:00
-fall   ,2 ,30 ,B ,drive ,102 ,eastland ,10:45:00 ,westcity ,12:15:00
+fall,2,20,B,drive,201,westcity,09:00:00,eastland,10:00:00
+fall,2,30,B,drive,102,eastland,10:45:00,westcity,12:15:00
 ```
 
 (In this example, block IDs are listed in `run_events.txt` but not `trips.txt` because the blocks would also change with the schedule change.)
