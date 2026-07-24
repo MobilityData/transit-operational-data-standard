@@ -16,7 +16,7 @@ Contributors are expected to commit to supporting the adopted TODS v1 specificat
 [Kings Area Rural Transit (KART), CA](https://www.kartbus.org/)  
 [Los Angeles DOT, CA](https://www.ladottransit.com/dash/)  
 [Marin Transit, CA](https://marintransit.org/)  
-[Massachussets Bay Transit Authority (MBTA), MA](http://mbta.com) :material-check-circle-outline:  
+[Massachussets Bay Transportation Authority (MBTA), MA](http://mbta.com) :material-check-circle-outline:  
 [Metrolink, CA](https://metrolinktrains.com/)  
 [Metro Transit, MN](https://www.metrotransit.org)  
 [Nevada County Connects, CA](https://www.mynevadacounty.com/2257/Transit-Services)  
