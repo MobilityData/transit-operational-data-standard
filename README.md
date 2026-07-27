@@ -1,20 +1,14 @@
-# Transit Operational Data Standard
+# tods-transit.org
 
-The Transit Operational Data Standard (TODS) is an open standard for describing how to operate scheduled transit operations which can be used to port scheduled operations between software products (e.g. scheduling systems and CAD/AVL systems), agencies, and more. TODS leverages the existing [General Transit Feed Specification](https://gtfs.org) (GTFS) and extends it to include information about personnel and non-revenue service.
+Source code for [gbfs.org](https://tods-transit.org/).
 
-Complete documentation published at: <https://tods.mobilitydata.org>
+This site was built using [MkDocs](https://www.mkdocs.org/), a static site generator, and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), a technical documentation theme for MkDocs.
 
-## License to Use
+## Editing site
 
-The TODS Specification is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) (code) and [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (sample data, specification, and documentation) as defined in <LICENSES> file.
+To edit the General Bikeshare Feed Specification reference, go to the [MobilityData/gbfs](https://github.com/MobilityData/TODS/) repository.
 
-## Citation
-
-If you use the Transit Operational Data Standard in a report or article, please cite it as follows:
-
-> Transit Operational Data Standard Working Group. 2022. Transit Operational Data Standard. Transit Operational Data Standard Board of Directors. https://tods.mobilitydata.org.
-
-Additional citation styles can be found in [CITATION](CITATION).
+To propose a feature, content addition, or UI/UX improvement, open an [issue](https://github.com/MobilityData/tods-transit.org/issues/new) or [pull request](https://github.com/MobilityData/tods-transit.org/pulls) on this repository.
 
 ## Building the site locally
 
@@ -38,3 +32,7 @@ Additional citation styles can be found in [CITATION](CITATION).
    - `make build`
 1. Deactivate the Python virtual environment when done:
    - `deactivate`
+
+## License to Use
+
+Except as otherwise noted, the content of this site is licensed under the [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/).
