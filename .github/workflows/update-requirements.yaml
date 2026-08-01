@@ -18,10 +18,10 @@ jobs:
             echo "TODAYS_YEAR=$(date '+%Y')" >> $GITHUB_ENV # Ex.: 2023
             
       - name: Checkout repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Python
-        uses: actions/setup-python@v6.3.0
+        uses: actions/setup-python@v7.0.0
         with:
           python-version: 3.11 # Adjust to your required Python version
 
@@ -60,7 +60,7 @@ jobs:
       - name: Create Pull Request
         id: createpr
         if: env.changes == 'true'
-        uses: peter-evans/create-pull-request@v7.0.6
+        uses: peter-evans/create-pull-request@v8.1.1
         with:
           token: ${{ env.GITHUB_TOKEN }}
           sign-commits: true
