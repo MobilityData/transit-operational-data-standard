@@ -88,7 +88,7 @@ Any scripts or code released within the [TODS Repository Organization](#tods-rep
 
 ### TODS Use License
 
-The [TODS Specification](#tods-specification) is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) (code) and [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (sample data, specification, and documentation) as defined in [`LICENSES`](https://github.com/cal-itp/operational-data-standard/blob/main/LICENSES) file in the [GitHub repository](https://github.com/MobilityData/transit-operational-data-standard).
+The [TODS Specification](#tods-specification) is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) (code) and [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (sample data, specification, and documentation) as defined in [`LICENSES`](https://github.com/MobilityData/transit-operational-data-standard/blob/main/LICENSE) file in the [GitHub repository](https://github.com/MobilityData/transit-operational-data-standard).
 
 ## Roles
 
