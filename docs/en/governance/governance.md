@@ -76,15 +76,11 @@ The text and website (and supporting scripts) which describe the [TODS Specifica
 ### TODS Repository
 
 The version control repository containing the [TODS Specification](#tods-specification) located at:
-<https://github.com/cal-itp/operational-data-standard>
+<https://github.com/MobilityData/transit-operational-data-standard>
 
 ### TODS Repository Organization
 
 The version control organization which contains the [TODS Repository](#tods-repository).
-
-!!! warning "To be migrated"
-
-    The TODS Repository is currently located with the Cal-ITP GitHub organization but will be migrated as part of the process of transitioning management to MobilityData.
 
 ### TODS Tools
 
@@ -92,7 +88,7 @@ Any scripts or code released within the [TODS Repository Organization](#tods-rep
 
 ### TODS Use License
 
-The [TODS Specification](#tods-specification) is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) (code) and [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (sample data, specification, and documentation) as defined in [`LICENSES`](https://github.com/cal-itp/operational-data-standard/blob/main/LICENSES) file in the [GitHub repository](https://github.com/cal-itp/operational-data-standard).
+The [TODS Specification](#tods-specification) is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) (code) and [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (sample data, specification, and documentation) as defined in [`LICENSES`](https://github.com/cal-itp/operational-data-standard/blob/main/LICENSES) file in the [GitHub repository](https://github.com/MobilityData/transit-operational-data-standard).
 
 ## Roles
 
