@@ -31,6 +31,33 @@ All files are optional.
 
 _The use of the Supplement standard to modify other GTFS files is not yet formally adopted into the specification and remains subject to change. Other files may be formally adopted in the future._
 
+## Dataset Packaging and Discovery
+
+### Distribution Format
+
+A TODS dataset **should** be distributed as either:
+
+- A **ZIP archive** (`.zip`), with all TODS `.txt` files placed directly at the root of the archive (not inside a subdirectory), **or**
+- A **directory** containing the `.txt` files at the top level of that directory.
+
+All TODS files within a package **must** be plain text, comma-separated values (CSV) files with a `.txt` extension, consistent with the [GTFS dataset format](https://gtfs.org/schedule/reference/#dataset-attributes).
+
+### Companion GTFS Dataset
+
+Because TODS Supplement files reference and modify GTFS data, a TODS dataset is always associated with a companion GTFS Schedule dataset.
+
+- The companion GTFS dataset **may** be bundled together with the TODS files in the same ZIP archive or directory, or it **may** be distributed separately.
+- When distributed separately, producers **should** document the association between the TODS package and the exact GTFS version it was built against, so that consumers can pair them correctly.
+- When bundled together, GTFS files and TODS files **must** coexist at the same root level; the TODS files take precedence wherever TODS defines supplemental behaviour.
+
+### Versioned Release Units
+
+A TODS package represents a **versioned release unit**: a snapshot of both the operational data and the GTFS data it supplements.
+
+- Each published package **should** be associated with a specific GTFS feed version (e.g. via the GTFS `feed_info.txt` `feed_version` field or an equivalent external reference).
+- When the underlying GTFS dataset changes in a way that affects TODS Supplement semantics (e.g. trips are added or removed), a new paired TODS package **should** be published.
+- Producers **may** communicate version pairing out-of-band (e.g. in a manifest file or API response), but the TODS specification does not mandate a specific mechanism beyond the recommendation to document the association.
+
 ## Supplement Files
 
 ### Structure
