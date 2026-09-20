@@ -58,6 +58,8 @@ TODS is used by transit agencies and the software which supports them including:
 
 :material-check-circle: [Optibus](https://optibus.com/)
 
+:material-check-circle: [Giro Hastus](https://www.giro.ca/) (on request)
+
 :material-check-circle-outline: [MBTA](http://mbta.com) (in progress)
 
 :material-check-circle-outline: [Keolis Commuter Services](https://www.keolisna.com/locations/boston-massachusetts) (in progress)
@@ -76,7 +78,7 @@ TODS is used by transit agencies and the software which supports them including:
 
 :material-check-circle: [Optibus](https://optibus.com/)
 
-:material-check-circle-outline: [Giro Hastus](https://www.giro.ca/) (on request)
+:material-check-circle: [Giro Hastus](https://www.giro.ca/) (on request)
 
 ## How do I implement TODS?
 
