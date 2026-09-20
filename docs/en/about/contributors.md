@@ -2,7 +2,7 @@
 
 The Transit Operational Data Standard Contributors Group (formerly known as the TODS Working Group) is convened by [TODS Board](../governance/governance.md#tods-board-of-directors) as part of its goal to provide complete, accurate, and up-to-date transit data to customers and respective agencies.
 
-Contributors are expected to commit to supporting the adopted TODS v1 specification. Depending on the organization,supporting the TODS v1 specification may entail developing software to produce or consume the specification, or, for transit agencies, encouraging vendors to support the specification.
+Contributors are expected to commit to supporting the adopted TODS v1 or v2 specifications. Depending on the organization, supporting the TODS specification may entail developing software to produce or consume the specification, or, for transit agencies, encouraging vendors to support the specification.
 
 ## Membership
 
@@ -38,7 +38,7 @@ Contributors are expected to commit to supporting the adopted TODS v1 specificat
 [Giro](https://www.giro.com/)  :material-check-circle:   (on-request)  
 [GMV Syncromatics](https://gmvsyncromatics.com/)  
 [Init](https://www.initse.com/enus/start/)  
-[Keolis](https://www.keolisna.com/)  
+[Keolis](https://www.keolisna.com/) :material-check-circle-outline:  
 [MV Transit](https://www.mvtransit.com/)  
 [Optibus](https://www.optibus.com/) :material-check-circle:  
 [Passio](https://passiotech.com/)  
