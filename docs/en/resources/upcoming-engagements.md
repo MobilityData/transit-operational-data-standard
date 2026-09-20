@@ -8,8 +8,8 @@
 * 2026-08-09/12 — [APTAtech](https://www.cgi.com/us/en-us/event/cgi-advantage/aptatech) — _St. Louis, Missouri, United States of America_
 * 2026-09-22/23 — [International Mobility Data Summit](https://mobilitydata.org/2026-international-mobility-data-summit/) — _Montreal, Quebec, Canada_
 * 2026-10-04/07 — [APTA TRANSform](https://www.aptaexpo.com/) — _Chicago, Illinois, United States of America_
-* 2026-10-TBA — [TransportationCamp NYC](https://transportationcamp.org/) — _Brooklyn, New York, United States of America_
-* 2026-10-TBA — [TransportationCamp New England](https://transportationcamp.org/) — _Boston, Massachusetts, United States of America_
+* 2026-10-17 — [TransportationCamp New England](https://transportationcamp.org/) — _Cambridge, Massachusetts, United States of America_
+* 2026-10-24 — [TransportationCamp NYC](https://transportationcamp.org/) — _Brooklyn, New York, United States of America_
 
 <h3>2027</h3>
 
