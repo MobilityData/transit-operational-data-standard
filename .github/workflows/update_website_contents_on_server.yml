@@ -22,7 +22,7 @@ jobs:
     
     - name: Load secrets from 1Password
       id: onepw_secrets
-      uses: 1password/load-secrets-action@v2.0.0
+      uses: 1password/load-secrets-action@v5.0.1
       with:
           export-env: true # Export loaded secrets as environment variables
       env:
@@ -33,7 +33,7 @@ jobs:
           ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY: "op://rbiv7rvkkrsdlpcrz3bmv7nmcu/kttdw7r3jp6rir7rtgkwk2a22q/ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY"
           
     - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v1.2.5
       with:
         host: ${{ env.ACTION_GXFS_WEBSERVER_SSH_HOST }}
         username: ${{ env.ACTION_GXFS_WEBSERVER_SSH_USER }}
