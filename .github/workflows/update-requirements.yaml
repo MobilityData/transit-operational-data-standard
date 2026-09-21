@@ -27,7 +27,7 @@ jobs:
 
       - name: Load secrets from 1Password
         id: onepw_secrets
-        uses: 1password/load-secrets-action@v4.0.1
+        uses: 1password/load-secrets-action@v5.0.1
         with:
             export-env: true # Export loaded secrets as environment variables
         env:
