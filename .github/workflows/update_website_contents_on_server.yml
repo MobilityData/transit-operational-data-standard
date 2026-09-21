@@ -40,4 +40,4 @@ jobs:
         key: ${{ env.ACTION_GXFS_WEBSERVER_SSH_PRIVATE_KEY }}
         port: ${{ env.ACTION_GXFS_WEBSERVER_SSH_PORT }}
         script: |
-                    ./tods_mobilitydata_org_webaite_updater.sh
+                    ./tods-transit-org_website_updater.sh
