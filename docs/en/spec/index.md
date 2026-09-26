@@ -28,6 +28,7 @@ All files are optional.
 | employee_run_dates.txt | TODS-Specific | Assigns employees to runs. |
 | vehicles.txt | TODS-Specific | Lists fleet vehicles with attributes for reference in `vehicle_assignments.txt` |
 | vehicle_assignments.txt | TODS-Specific | Assign vehicles to trips by `service_id` and `block_id`. |
+| chargers.txt | TODS-Specific | Describes electric vehicle charging infrastructure within a network. |
 
 _The use of the Supplement standard to modify other GTFS files is not yet formally adopted into the specification and remains subject to change. Other files may be formally adopted in the future._
 
@@ -208,3 +209,19 @@ Primary Key: `(date, block_id, service_id)`
 Not every block and date combo needs to have a vehicle specified.
 
 *Note for future-compatibility:* `vehicle_id` field may change to conditionally required in a future version where assignments may be made to either an individual vehicle OR a grouping of vehicles. See [GTFS-Vehicles](http://bit.ly/gtfs-vehicles) for how vehicle categories (types) might be incorporated.
+
+### `chargers.txt`
+
+Primary Key: `(ops_location_id OR stop_id)`
+
+Describes electric vehicle charging infrastructure within a network.
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `ops_location_id` | ID referencing `stops_supplement.stop_id` | Conditionally Required | Identifies the operational location of the charger. Required if `stop_id` is not defined. |
+| `stop_id` | ID referencing `stops.stop_id` | Conditionally Required | Identifies the stop location of the charger. Required if `ops_location_id` is not defined. |
+| `max_kw` | Integer | Required | The maximum amount of power output possible from the charger in kW. |
+| `number_of_chargers` | Integer | Required | Describes how many charging sessions can take place at this location. |
+| `start_time` | Time | Optional | Describes the start of the time period when the charging location is available. If empty, it is assumed there are no time restrictions. |
+| `end_time` | Time | Optional | Describes the end of the time period when the charging location is available. If empty, it is assumed there are no time restrictions. |
+
