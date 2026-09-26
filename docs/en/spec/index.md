@@ -28,6 +28,7 @@ All files are optional.
 | employee_run_dates.txt | TODS-Specific | Assigns employees to runs. |
 | vehicles.txt | TODS-Specific | Lists fleet vehicles with attributes for reference in `vehicle_assignments.txt` |
 | vehicle_assignments.txt | TODS-Specific | Assign vehicles to trips by `service_id` and `block_id`. |
+| rosters.txt | TODS-Specific | Defines duties (runs) clustered within a roster to assign to a driver over one or more weeks. |
 
 _The use of the Supplement standard to modify other GTFS files is not yet formally adopted into the specification and remains subject to change. Other files may be formally adopted in the future._
 
@@ -208,3 +209,24 @@ Primary Key: `(date, block_id, service_id)`
 Not every block and date combo needs to have a vehicle specified.
 
 *Note for future-compatibility:* `vehicle_id` field may change to conditionally required in a future version where assignments may be made to either an individual vehicle OR a grouping of vehicles. See [GTFS-Vehicles](http://bit.ly/gtfs-vehicles) for how vehicle categories (types) might be incorporated.
+
+### `rosters.txt`
+
+Primary Key: `(roster_id, service_id, week_sequence)`
+
+Defines duties (runs) clustered within a roster to assign to a driver, representing work over one or more weeks.
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `ods_roster_id` | ID | Required | Persistent ID used to keep track of changes to a roster over time across duty updates. |
+| `roster_id` | ID | Required | Identifies the roster. Primary key. |
+| `service_id` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Required | Defined service period that the duties and `roster_id` are valid for. |
+| `monday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Monday during this service period. If empty, no run is assigned. |
+| `tuesday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Tuesday during this service period. If empty, no run is assigned. |
+| `wednesday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Wednesday during this service period. If empty, no run is assigned. |
+| `thursday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Thursday during this service period. If empty, no run is assigned. |
+| `friday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Friday during this service period. If empty, no run is assigned. |
+| `saturday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Saturday during this service period. If empty, no run is assigned. |
+| `sunday_run` | ID referencing `run_events.run_id` | Optional | Specifies the `run_id` that operates on a Sunday during this service period. If empty, no run is assigned. |
+| `week_sequence` | Non-negative Integer | Optional | Indicates which week this row represents in a multi-week roster (e.g. `1` for the first week, `2` for the second week). If empty, the roster represents a single-week pattern. |
+
