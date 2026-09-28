@@ -185,9 +185,9 @@ Primary Key: (`date`, `service_id`, `run_id`, `employee_id`)
 
 ### `rosters.txt`
 
-Describes rosters: sequences of runs, organized by week and day of the week, that are worked by one roster position over a rotating cycle.
+Describes rosters: sequences of runs, organized by week and day of the week, that are worked by one employee over a rotating cycle.
 
-Each row describes the work performed by one roster position over one week of its rotating cycle, broken down by individual day. A roster is intended to be allocated to an employee later in the process. The employee starts working the roster in week 1 and continues it until the last week of the roster. Employees cannot be allocated to start in the middle of a roster. If that should be possible, for example for rotating rosters, all allowed permutations must be listed explicitly as separate rosters. See the [examples](examples.md#rosters) for more details.
+Each row is a roster line describing one week of a roster, broken down by individual day. A roster is intended to be allocated to an employee later in the process. The employee starts working the roster in week 1 and continues it until the last week of the roster. Employees cannot be allocated to start in the middle of a roster. If that should be possible, for example for rotating rosters, all allowed permutations must be listed explicitly as separate rosters. See the [examples](examples.md#rosters) for more details.
 
 The seven day columns are ordered Monday through Sunday. Each day column names the run worked on that day, and is paired with a `service_id_<day>` column naming the service under which that run operates.
 
@@ -196,7 +196,7 @@ Primary Key: (`roster_id`, `week_sequence`)
 | **Field Name** | **Type** | **Required** | **Description** |
 | --- | --- | --- | --- |
 | `roster_id` | ID | Required | Identifies a roster. |
-| `week_sequence` | Positive integer | Required | The position of this week within the roster's rotating cycle, 1-based. Use `1` for a roster that repeats every week. The cycle length of a roster is given by the highest `week_sequence` present for its `roster_id`. |
+| `week_sequence` | Positive integer | Required | The position of this week within the roster's rotating cycle, 1-based and consecutive. The cycle length of a roster is given by the highest `week_sequence` present for its `roster_id`; a roster that repeats every week has a single row with `week_sequence` `1`. |
 | `roster_group` | Text | Optional | A tag that can be used to group rosters which were built for employees with the same attributes or tasks (e.g. full-time vs. part-time, different union rules, different routes, etc.). |
 | `monday` | ID referencing `run_events.run_id`, or `OFF` or `STANDBY` | Optional | The run worked on the Monday of this week. See [Roster Day Values](#roster-day-values). |
 | `service_id_monday` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Conditionally Required | The service under which the run named in `monday` operates. Together with `monday`, this forms the `(service_id, run_id)` pair that identifies a run in [`run_events.txt`](#run_eventstxt). See [Run ID Uniqueness](#run-id-uniqueness).<br /><br />**Conditionally Required:**<br />- Required if `monday` names a run.<br />- Forbidden otherwise. |
@@ -217,8 +217,8 @@ Primary Key: (`roster_id`, `week_sequence`)
 
 | **Value** | **Meaning** | **Paired `service_id_<day>`** |
 | --- | --- | --- |
-| A run ID, e.g. `11101` | The roster position works that run on that day. | Required |
-| `OFF` | An explicit, scheduled rest day. The roster position is rostered, and rostered not to work. | Must be empty |
+| A run ID, e.g. `11101` | The employee working the roster works that run on that day. | Required |
+| `OFF` | An explicit, scheduled rest day. The employee is rostered, and rostered not to work. | Must be empty |
 | `STANDBY` | A standby day. The employee needs to be ready to work, but no concrete run is allocated yet. | Must be empty |
 | Empty | No assignment is stated: the day is unassigned, or falls outside the operating pattern. This is an absence of information, not a scheduled rest day. | Must be empty |
 
@@ -228,8 +228,7 @@ The `STANDBY` value makes no statement about the times of day during which the e
 
 #### `rosters` Notes
 
-- Within one `week_sequence`, a given (day, `run_id`, `service_id`) combination may be assigned on only one row across all rosters. Two rosters assigned the same run on the same day of the same week are double-booked: two people cannot work one run.
-    - `roster_group` is ignored for the purpose of this rule; it is only a label that clusters rosters.
+- A given (day, `run_id`, `service_id`) combination may be assigned on more than one row within the same `week_sequence`, across rosters or within one. This means that multiple employees work that run on that day, consistent with [`employee_run_dates.txt`](#employee_run_datestxt).
 - Scheduled exceptions to a roster (e.g. holidays or non-standard weeks) are not modeled in this file. Non-standard weeks may be modeled with additional roster rows, and the resulting assignment of employees to runs on concrete dates can be described in [`employee_run_dates.txt`](#employee_run_datestxt).
 - Recommended sort order: `roster_id`, `week_sequence`.
 

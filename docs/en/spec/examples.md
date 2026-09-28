@@ -424,5 +424,3 @@ R10,2,Default,OFF,,OFF,,3002,WKDY,3002,WKDY,3002,WKDY,410,SAT,510,SUN
 R11,1,Default,OFF,,OFF,,3002,WKDY,3002,WKDY,3002,WKDY,410,SAT,510,SUN
 R11,2,Default,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,OFF,,OFF,
 ```
-
-No run is double-booked: in each `week_sequence`, every (day, `run_id`, `service_id`) combination appears on only one row.
