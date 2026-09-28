@@ -382,3 +382,47 @@ date,service_id,run_id,employee_id
 20240707,weekend,103,A
 20240707,weekend,104,B
 ```
+
+## Rosters
+
+These examples use [`rosters.txt`](index.md#rosterstxt) to group runs into weekly rosters. They assume that services `WKDY`, `SAT` and `SUN` and the referenced runs are defined in `calendar.txt` and [`run_events.txt`](index.md#run_eventstxt).
+
+### A Single-Week Roster
+
+Two rosters, each repeating weekly. Roster `R01` works weekday runs and rests at the weekend. Roster `R02` also works on Saturday, under a different service.
+
+**[`rosters.txt`](index.md#rosterstxt)**
+
+```csv
+roster_id,week_sequence,roster_group,monday,service_id_monday,tuesday,service_id_tuesday,wednesday,service_id_wednesday,thursday,service_id_thursday,friday,service_id_friday,saturday,service_id_saturday,sunday,service_id_sunday
+R01,1,,11101,WKDY,11101,WKDY,11101,WKDY,11101,WKDY,11101,WKDY,OFF,,OFF,
+R02,1,,11102,WKDY,11102,WKDY,OFF,,11102,WKDY,11102,WKDY,205,SAT,OFF,
+```
+
+`R01` and `R02` both work runs in the same service on the same days, but with different run IDs. `roster_group` is left empty, since there is no need to cluster the rosters in this example.
+
+### A Two-Week Rotating Roster
+
+One roster, `R10`, alternating between a weekday pattern and a weekday-plus-weekend pattern. Its cycle length is 2, given by the highest `week_sequence` present.
+
+**[`rosters.txt`](index.md#rosterstxt)**
+
+```csv
+roster_id,week_sequence,roster_group,monday,service_id_monday,tuesday,service_id_tuesday,wednesday,service_id_wednesday,thursday,service_id_thursday,friday,service_id_friday,saturday,service_id_saturday,sunday,service_id_sunday
+R10,1,Default,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,OFF,,OFF,
+R10,2,Default,OFF,,OFF,,3002,WKDY,3002,WKDY,3002,WKDY,410,SAT,510,SUN
+```
+
+This roster describes the work of a single employee, who always starts in week 1. If two employees should work this roster in a rotating manner, so that one employee starts with the first week and the other with the second week, both permutations must be listed as separate rosters:
+
+**[`rosters.txt`](index.md#rosterstxt)**
+
+```csv
+roster_id,week_sequence,roster_group,monday,service_id_monday,tuesday,service_id_tuesday,wednesday,service_id_wednesday,thursday,service_id_thursday,friday,service_id_friday,saturday,service_id_saturday,sunday,service_id_sunday
+R10,1,Default,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,OFF,,OFF,
+R10,2,Default,OFF,,OFF,,3002,WKDY,3002,WKDY,3002,WKDY,410,SAT,510,SUN
+R11,1,Default,OFF,,OFF,,3002,WKDY,3002,WKDY,3002,WKDY,410,SAT,510,SUN
+R11,2,Default,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,3001,WKDY,OFF,,OFF,
+```
+
+No run is double-booked: in each `week_sequence`, every (day, `run_id`, `service_id`) combination appears on only one row.
