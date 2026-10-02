@@ -290,6 +290,8 @@ Primary Key: (`trip_id`, `vehicle_type_id`)
 | `vehicle_type_id` | ID referencing [`vehicle_types.vehicle_type_id`](#vehicle_typestxt) | Required | Identifies a vehicle type which may operate the trip. |
 | `preference_rank` | Positive integer | Optional | Ranks the vehicle types of a trip by preference, where `1` is the most preferred vehicle type. Vehicle types with the same rank are equally preferred. If blank, no preference order is defined among the vehicle types of the trip. |
 
-If a trip has no rows in this file, the vehicle types of its block (see [`block_vehicle_types.txt`](#block_vehicle_typestxt)) apply.
+If a trip has no rows in this file, it does not constrain the vehicle types of the blocks it is part of.
 
-If a trip has rows in this file and its block has rows in `block_vehicle_types.txt`, at least one vehicle type should be listed for both the trip and the block on every date on which the trip is operated in that block. Otherwise, no vehicle assigned to the block could operate the trip. Validators should report a violation of this recommendation as a warning, not as an error.
+A trip may be part of different blocks on different dates. Therefore, the vehicle types of a trip constrain the vehicle types of its blocks, but not the other way round.
+
+If a block has rows in [`block_vehicle_types.txt`](#block_vehicle_typestxt), then on every date on which the block operates, at least one of its vehicle types must also be listed in this file for every trip of the block on that date which has rows in this file. Otherwise, the vehicle types of the block and of its trips would contradict one another.

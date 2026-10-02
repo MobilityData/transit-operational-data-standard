@@ -337,7 +337,7 @@ date,service_id,block_id,vehicle_id
 
 This example uses the [GTFS files from the first example](#gtfs-files), where block `BLOCK-A` operates trips `101` through `104` every day.
 
-The agency operates two vehicle types: standard 12 m diesel buses and articulated 18 m battery-electric buses. `BLOCK-A` should preferably be operated by an articulated bus, but a standard bus is acceptable if no articulated bus is available. However, trip `103` passes a tight turn which articulated buses cannot take.
+The agency operates two vehicle types: standard 12 m diesel buses and articulated 18 m battery-electric buses. `BLOCK-A` should preferably be operated by an articulated bus, but a standard bus is acceptable if no articulated bus is available.
 
 ### `vehicle_types.txt`
 
@@ -370,15 +370,6 @@ BLOCK-A,daily,articulated,1
 BLOCK-A,daily,standard,2
 ```
 
-### `trip_vehicle_types.txt`
-
-```csv
-trip_id,vehicle_type_id
-103,standard
-```
-
-All other trips have no rows in `trip_vehicle_types.txt`, so the vehicle types of `BLOCK-A` apply to them. Trip `103` restricts the vehicle types to `standard`, which is also an acceptable vehicle type for `BLOCK-A`. Therefore, a standard bus must be used for `BLOCK-A`. Without trip `103`, an articulated bus would be preferred for this block.
-
 ## Blocks with Trips on Different `service_id`s
 
 This example is based on the [GTFS example on blocks and service days](https://gtfs.org/documentation/schedule/reference/#example-blocks-and-service-day), where the block `red_loop` consists of different trips on different days of the week:
@@ -389,7 +380,7 @@ This example is based on the [GTFS example on blocks and service days](https://g
 
 The trips use different `service_id`s, so there is no single trip `service_id` that describes the block on a given day. In `blocks.txt`, the `service_id` describes the days on which the block operates, independently of the `service_id`s of its trips (see [`service_id` and Blocks](index.md#service_id-and-blocks)).
 
-In this example, the agency uses a different block code on each of these day groups, and prefers an articulated bus for the busier Friday and Saturday nights.
+In this example, the agency uses a different block code on each of these day groups. Due to high late-night demand, `trip_3` (which only operates on Friday and Saturday) must be operated by an articulated bus.
 
 ### GTFS Files
 
@@ -448,11 +439,23 @@ On every date, exactly one of these `service_id`s is active, so the information 
 
 ```csv
 block_id,service_id,vehicle_type_id,preference_rank
-red_loop,mon-tues-wed-thurs,standard,
-red_loop,fri-sat,articulated,1
-red_loop,fri-sat,standard,2
-red_loop,sun,standard,
+red_loop,mon-tues-wed-thurs,standard,1
+red_loop,mon-tues-wed-thurs,articulated,2
+red_loop,fri-sat,articulated,
+red_loop,sun,standard,1
+red_loop,sun,articulated,2
 ```
+
+#### `trip_vehicle_types.txt`
+
+```csv
+trip_id,vehicle_type_id
+trip_3,articulated
+```
+
+The other trips have no rows in `trip_vehicle_types.txt`, so they do not constrain the vehicle types of `red_loop`. Note that `trip_1` is part of all three blocks, so if it had rows in `trip_vehicle_types.txt`, they would constrain all of them.
+
+On Friday and Saturday, `trip_3` is part of `red_loop`, and its vehicle type `articulated` is also a vehicle type of the block on these days, so the block and trip vehicle types are consistent. Listing only `standard` for `red_loop` on `fri-sat` would contradict `trip_3`. On the other days, `trip_3` is not part of the block, so the block may prefer standard buses.
 
 ### Alternatives
 
