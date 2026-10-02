@@ -28,6 +28,10 @@ All files are optional.
 | employee_run_dates.txt | TODS-Specific | Assigns employees to runs. |
 | vehicles.txt | TODS-Specific | Lists fleet vehicles with attributes for reference in `vehicle_assignments.txt` |
 | vehicle_assignments.txt | TODS-Specific | Assign vehicles to trips by `service_id` and `block_id`. |
+| vehicle_types.txt | TODS-Specific | Lists the types of vehicles in the fleet with their operationally relevant attributes. |
+| blocks.txt | TODS-Specific | Defines block-level information, such as a human-readable block code. |
+| block_vehicle_types.txt | TODS-Specific | Lists the vehicle types that may operate a block, optionally in order of preference. |
+| trip_vehicle_types.txt | TODS-Specific | Lists the vehicle types that may operate a trip, optionally in order of preference. |
 
 _The use of the Supplement standard to modify other GTFS files is not yet formally adopted into the specification and remains subject to change. Other files may be formally adopted in the future._
 
@@ -191,6 +195,7 @@ Primary Key: `vehicle_id`
 | `vehicle_id` | ID, primary key | Required | Defines an ID for a vehicle. It is *recommended* but not required to match the `vehicle_id` in GTFS-realtime feeds. |
 | `vehicle_label` | Text | Optional | Free text label for a vehicle, e.g. bus number or vessel name. |
 | `license_plate` | Text | Optional | License number or global identifier for the vehicle, e.g. “E898656”. The field name was chosen to align with the `license_plate` field in GTFS-Realtime. It may specify a different global identifier, particularly for non-road vehicle types without license plates, e.g. Maritime Mobile Service Identity (MMSI) for ferries. |
+| `vehicle_type_id` | ID referencing [`vehicle_types.vehicle_type_id`](#vehicle_typestxt) | Optional | Identifies the type of the vehicle. |
 
 *Note for future-compatibility:* Future TODS versions may support vehicle couplings: specifically, train cars (individual vehicles) that comprise a train set. Such a proposal is described by the [GTFS-VehicleCouplings draft extension](http://bit.ly/gtfs-vehicles).
 
@@ -208,3 +213,83 @@ Primary Key: `(date, block_id, service_id)`
 Not every block and date combo needs to have a vehicle specified.
 
 *Note for future-compatibility:* `vehicle_id` field may change to conditionally required in a future version where assignments may be made to either an individual vehicle OR a grouping of vehicles. See [GTFS-Vehicles](http://bit.ly/gtfs-vehicles) for how vehicle categories (types) might be incorporated.
+
+### `vehicle_types.txt`
+
+Describes the types of vehicles in the fleet. This file focuses on attributes that are relevant for operations (e.g. vehicle scheduling, dispatching, and depot management). Passenger-facing vehicle information is out of scope for TODS, see e.g. the [GTFS-Vehicles](http://bit.ly/gtfs-vehicles) proposal.
+
+Primary Key: `vehicle_type_id`
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `vehicle_type_id` | ID | Required | Identifies a vehicle type. |
+| `vehicle_type_name` | Text | Required | Human-readable name of the vehicle type, e.g. "40-ft Battery-Electric Bus". |
+| `fuel_type` | Enum | Optional | The propulsion type of the vehicle type. Values are aligned with the `FuelType` of the NeTEx `VehicleType` element.<br /><br />`battery`<br />`diesel`<br />`dieselBatteryHybrid`<br />`electricContact`<br />`electricity`<br />`ethanol`<br />`hydrogen`<br />`liquidGas`<br />`methane`<br />`naturalGas`<br />`petrol`<br />`petrolBatteryHybrid`<br />`other` |
+| `length` | Non-negative float | Optional | Length of the vehicle type in meters. |
+| `width` | Non-negative float | Optional | Width of the vehicle type in meters. |
+| `height` | Non-negative float | Optional | Height of the vehicle type in meters. |
+| `weight` | Non-negative float | Optional | Permissible total weight (including passengers and/or freight) of the vehicle type in metric tons. |
+| `apc_equipped` | Enum | Optional | Indicates whether vehicles of this type are equipped with automatic passenger counting (APC).<br /><br />`0` (or blank) - No information<br />`1` - Vehicles are equipped with APC<br />`2` - Vehicles are not equipped with APC |
+| `wheelchair_accessible` | Enum | Optional | Indicates whether vehicles of this type can accommodate riders using a wheelchair.<br /><br />`0` (or blank) - No information<br />`1` - Vehicles can accommodate at least one rider in a wheelchair<br />`2` - Vehicles cannot accommodate riders in wheelchairs |
+
+Dimensions are given in meters to align with the units used in GTFS (e.g. `pathways.txt`).
+
+### `blocks.txt`
+
+Defines information about blocks, i.e. the sequences of trips operated by a single vehicle.
+
+Primary Key: (`block_id`, `service_id`)
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `block_id` | ID referencing `trips.block_id` | Required | Identifies the block. |
+| `service_id` | ID referencing `calendar.service_id` or `calendar_dates.service_id` | Required | Identifies the set of service days on which the block operates. See [`service_id` and Blocks](#service_id-and-blocks). |
+| `block_code` | Text | Optional | Agency-facing, human-readable name or label of the block, distinct from `block_id` (which may e.g. be generated by a scheduling system). Useful where naming conventions carry operational meaning, e.g. a `109-xx` prefix indicating a spare block. |
+
+#### `service_id` and Blocks
+
+In GTFS, a block is identified by its `block_id` together with the service day on which it operates. A block on a given service day may consist of trips with different `service_id`s (see the [GTFS example on blocks and service days](https://gtfs.org/documentation/schedule/reference/#example-blocks-and-service-day)). Therefore, the `service_id` in `blocks.txt` describes the block's own calendar, i.e. the set of service days on which the block operates as a vehicle's day of work. It does not need to match the `service_id` of any of the trips in the block. This is analogous to how the `service_id` of a run may differ from the `service_id`s of the trips it works on (see [`service_id`, Crew Schedules, and Trip Schedules](#service_id-crew-schedules-and-trip-schedules)).
+
+For most agencies, all trips of a block share the same `service_id`, and that `service_id` can simply be used in `blocks.txt`. Producers whose block calendars do not line up with their trip calendars may define block-specific services in `calendar_supplement.txt` and `calendar_dates_supplement.txt`.
+
+For any `block_id` and any date, at most one row in `blocks.txt` may have a `service_id` that is active on that date (after combining data from `calendar.txt`, `calendar_supplement.txt`, `calendar_dates.txt`, and `calendar_dates_supplement.txt`).
+
+To find the information about block `B` on date `D`, consumers should select the row in `blocks.txt` with `block_id` = `B` whose `service_id` is active on `D`. If there is no such row, no information is published for this block on this date.
+
+See the [example](examples.md#blocks-with-trips-on-different-service_ids) for how to model blocks whose trips have different `service_id`s.
+
+#### `blocks` Notes
+
+- The pull-out and pull-in times and locations (e.g. garages) of a block are not part of `blocks.txt`. They can be derived from the pull-out and pull-in deadhead trips of the block in `trips_supplement.txt` and `stop_times_supplement.txt`.
+- Not every block needs to have an entry in `blocks.txt`.
+
+### `block_vehicle_types.txt`
+
+Lists the vehicle types that may operate a block, as determined in the scheduling process. A block may have multiple acceptable vehicle types, e.g. if an articulated bus is preferred but a standard bus is acceptable if no articulated bus is available.
+
+Primary Key: (`block_id`, `service_id`, `vehicle_type_id`)
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `block_id` | ID referencing [`blocks.block_id`](#blockstxt) | Required | Identifies the block. |
+| `service_id` | ID referencing [`blocks.service_id`](#blockstxt) | Required | Identifies the set of service days on which the block operates. The (`block_id`, `service_id`) pair must exist in `blocks.txt`. |
+| `vehicle_type_id` | ID referencing [`vehicle_types.vehicle_type_id`](#vehicle_typestxt) | Required | Identifies a vehicle type which may operate the block. |
+| `preference_rank` | Positive integer | Optional | Ranks the vehicle types of a block by preference, where `1` is the most preferred vehicle type. Vehicle types with the same rank are equally preferred. If blank, no preference order is defined among the vehicle types of the block. |
+
+If a block has no rows in this file, no information is published about which vehicle types may operate the block.
+
+### `trip_vehicle_types.txt`
+
+Lists the vehicle types that may operate a trip, as determined in the scheduling process. This allows describing vehicle type requirements on trips independently of the blocks they belong to.
+
+Primary Key: (`trip_id`, `vehicle_type_id`)
+
+| Field Name | Type | Required | Description |
+|---|---|---|---|
+| `trip_id` | ID referencing `trips.trip_id` | Required | Identifies the trip. |
+| `vehicle_type_id` | ID referencing [`vehicle_types.vehicle_type_id`](#vehicle_typestxt) | Required | Identifies a vehicle type which may operate the trip. |
+| `preference_rank` | Positive integer | Optional | Ranks the vehicle types of a trip by preference, where `1` is the most preferred vehicle type. Vehicle types with the same rank are equally preferred. If blank, no preference order is defined among the vehicle types of the trip. |
+
+If a trip has no rows in this file, the vehicle types of its block (see [`block_vehicle_types.txt`](#block_vehicle_typestxt)) apply.
+
+If a trip has rows in this file and its block has rows in `block_vehicle_types.txt`, at least one vehicle type should be listed for both the trip and the block on every date on which the trip is operated in that block. Otherwise, no vehicle assigned to the block could operate the trip. Validators should report a violation of this recommendation as a warning, not as an error.
