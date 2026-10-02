@@ -333,6 +333,148 @@ date,service_id,block_id,vehicle_id
 20250207,daily,BLOCK-A,bus-1
 ```
 
+## Vehicle Types and Blocks
+
+This example uses the [GTFS files from the first example](#gtfs-files), where block `BLOCK-A` operates trips `101` through `104` every day.
+
+The agency operates two vehicle types: standard 12 m diesel buses and articulated 18 m battery-electric buses. `BLOCK-A` should preferably be operated by an articulated bus, but a standard bus is acceptable if no articulated bus is available.
+
+### `vehicle_types.txt`
+
+```csv
+vehicle_type_id,vehicle_type_name,fuel_type,length,width,height,weight,apc_equipped,wheelchair_accessible
+standard,12m Diesel Bus,diesel,12.0,2.55,3.1,18.0,1,1
+articulated,18m Battery-Electric Bus,battery,18.0,2.55,3.4,29.0,1,1
+```
+
+### `vehicles.txt`
+
+```csv
+vehicle_id,vehicle_label,vehicle_type_id
+bus-1,1001,standard
+bus-2,2001,articulated
+```
+
+### `blocks.txt`
+
+```csv
+block_id,service_id,block_code
+BLOCK-A,daily,12-01
+```
+
+### `block_vehicle_types.txt`
+
+```csv
+block_id,service_id,vehicle_type_id,preference_rank
+BLOCK-A,daily,articulated,1
+BLOCK-A,daily,standard,2
+```
+
+## Blocks with Trips on Different `service_id`s
+
+This example is based on the [GTFS example on blocks and service days](https://gtfs.org/documentation/schedule/reference/#example-blocks-and-service-day), where the block `red_loop` consists of different trips on different days of the week:
+
+- Monday to Thursday: `trip_4`, `trip_5`, and `trip_1`
+- Friday and Saturday: `trip_1`, `trip_2`, and `trip_3`
+- Sunday: `trip_1` and `trip_2`
+
+The trips use different `service_id`s, so there is no single trip `service_id` that describes the block on a given day. In `blocks.txt`, the `service_id` describes the days on which the block operates, independently of the `service_id`s of its trips (see [`service_id` and Blocks](index.md#service_id-and-blocks)).
+
+In this example, the agency uses a different block code on each of these day groups. Due to high late-night demand, `trip_3` (which only operates on Friday and Saturday) must be operated by an articulated bus.
+
+### GTFS Files
+
+#### `calendar.txt`
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+mon-tues-wed-thurs-fri-sat-sun,1,1,1,1,1,1,1,20260101,20261231
+mon-tues-wed-thurs,1,1,1,1,0,0,0,20260101,20261231
+fri-sat-sun,0,0,0,0,1,1,1,20260101,20261231
+fri-sat,0,0,0,0,1,1,0,20260101,20261231
+```
+
+#### `trips.txt`
+
+```csv
+route_id,service_id,trip_id,block_id
+red,mon-tues-wed-thurs-fri-sat-sun,trip_1,red_loop
+red,fri-sat-sun,trip_2,red_loop
+red,fri-sat,trip_3,red_loop
+red,mon-tues-wed-thurs,trip_4,red_loop
+red,mon-tues-wed-thurs,trip_5,red_loop
+```
+
+### TODS Files
+
+#### `calendar_supplement.txt`
+
+The services `mon-tues-wed-thurs` and `fri-sat` from `calendar.txt` already describe the days on which the block operates from Monday to Thursday, and on Friday and Saturday. There is no existing service for Sundays only, so it is added:
+
+```csv
+service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,end_date
+sun,0,0,0,0,0,0,1,20260101,20261231
+```
+
+#### `vehicle_types.txt`
+
+```csv
+vehicle_type_id,vehicle_type_name
+standard,12m Bus
+articulated,18m Articulated Bus
+```
+
+#### `blocks.txt`
+
+```csv
+block_id,service_id,block_code
+red_loop,mon-tues-wed-thurs,R-MT
+red_loop,fri-sat,R-FS
+red_loop,sun,R-SU
+```
+
+On every date, exactly one of these `service_id`s is active, so the information about `red_loop` is unambiguous. E.g. to describe `red_loop` on a Friday, consumers select the row with `service_id` `fri-sat`.
+
+#### `block_vehicle_types.txt`
+
+```csv
+block_id,service_id,vehicle_type_id,preference_rank
+red_loop,mon-tues-wed-thurs,standard,1
+red_loop,mon-tues-wed-thurs,articulated,2
+red_loop,fri-sat,articulated,
+red_loop,sun,standard,1
+red_loop,sun,articulated,2
+```
+
+#### `trip_vehicle_types.txt`
+
+```csv
+trip_id,vehicle_type_id
+trip_3,articulated
+```
+
+The other trips have no rows in `trip_vehicle_types.txt`, so they do not constrain the vehicle types of `red_loop`. Note that `trip_1` is part of all three blocks, so if it had rows in `trip_vehicle_types.txt`, they would constrain all of them.
+
+On Friday and Saturday, `trip_3` is part of `red_loop`, and its vehicle type `articulated` is also a vehicle type of the block on these days, so the block and trip vehicle types are consistent. Listing only `standard` for `red_loop` on `fri-sat` would contradict `trip_3`. On the other days, `trip_3` is not part of the block, so the block may prefer standard buses.
+
+### Alternatives
+
+If the block information is the same on all days, the producer can instead publish a single row using a `service_id` which is active on all days:
+
+```csv
+block_id,service_id,block_code
+red_loop,mon-tues-wed-thurs-fri-sat-sun,R
+```
+
+The following `blocks.txt` is **invalid**, because both `fri-sat` and `fri-sat-sun` are active on Fridays and Saturdays, so consumers could not determine which `block_code` applies on these days:
+
+```csv
+block_id,service_id,block_code
+red_loop,mon-tues-wed-thurs,R-MT
+red_loop,fri-sat,R-FS
+red_loop,fri-sat-sun,R-FSS
+```
+
 ## Employee Assignments
 
 This example uses [`employee_run_dates.txt`](index.md#employee_run_datestxt) to assign employees to runs (and trips).
