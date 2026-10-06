@@ -1,9 +1,0 @@
-// config file for markdown-link-check
-// see: https://github.com/tcort/markdown-link-check
-{
-    "ignorePatterns": [
-        {
-            "pattern": "localhost"
-        }
-    ]
-}
